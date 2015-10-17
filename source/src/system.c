@@ -18,7 +18,6 @@ void sysInit() {
 	exitFunction = on_exit;
 	
 	on_exit = cleanUpGame;
-	
 }
 
 void cleanUpGame() {
