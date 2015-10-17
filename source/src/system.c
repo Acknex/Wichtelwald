@@ -3,6 +3,7 @@
 
 void sysInit() {
 	max_particles = 25000;
+	physX_open();
 }
 
 #endif

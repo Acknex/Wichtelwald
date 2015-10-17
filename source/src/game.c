@@ -5,6 +5,7 @@ void startGame() {
 	endMenu();
 	level_load("maps//mainLevel.wmb");
 	gameCameraInit();
+	on_space = throwSnowball;
 }
 
 #endif
