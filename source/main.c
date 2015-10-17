@@ -22,6 +22,7 @@
 #include "system.h"
 #include "items.h"
 #include "hud.h"
+#include "hut.h"
 
 #include "menu.c"
 #include "game.c"
@@ -34,6 +35,7 @@
 #include "system.c"
 #include "items.c"
 #include "hud.c"
+#include "hut.c"
 
 void main() {
 	sysInit();
