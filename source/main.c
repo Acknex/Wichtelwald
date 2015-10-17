@@ -15,14 +15,24 @@
 #include "camera.h"
 #include "mouse.h"
 #include "player.h"
+#include "music.h"
+#include "lensflare.h"
+#include "weather.h"
+#include "system.h"
 
 #include "menu.c"
 #include "game.c"
 #include "camera.c"
 #include "mouse.c"
 #include "player.c"
+#include "music.c"
+#include "lensflare.c"
+#include "weather.c"
+#include "system.c"
 
 void main() {
+	
+	sysInit();
 	level_load("maps//menuLevel.wmb");
 	startMenu();
 }
