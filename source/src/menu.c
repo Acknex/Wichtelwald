@@ -127,5 +127,21 @@ void endMenu() {
 	mouse_mode = 0;
 }
 
+void startIngameGUI() {
+	panWoodCount.pos_x = screen_size.x - bmap_width(bmapWoodCount) - 20;
+	panWoodCount.pos_y = 10;
+	txtWoodCount = txt_create(1, 13);
+	txtWoodCount.font = fontBoogaloo;
+	txtWoodCount.pos_x = panWoodCount.pos_x - 10;
+	txtWoodCount.pos_y = 10;
+	
+	set(txtWoodCount, SHOW);
+	set(panWoodCount, SHOW);
+}
+
+void endIngameGUI() {
+	reset(panWoodCount, SHOW);
+}
+
 
 #endif

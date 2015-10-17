@@ -32,7 +32,6 @@
 #include "system.c"
 
 void main() {
-	
 	sysInit();
 	level_load("maps//menuLevel.wmb");
 	startMenu();
