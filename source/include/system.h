@@ -3,12 +3,12 @@
 
 
 #define PLAYER 1
-#define WICHTEL 2
-#define SCHNEEBALL 3
-#define HOLZSCHEIT 4
-#define HOLZHAUFEN 5
-#define HUETTE 6
-#define SCHUSS 7
+#define GOBLIN 2
+#define SNOWBALL 3
+#define LOGS 4
+#define WOODPILE 5
+#define HUT 6
+#define SHOT 7
 
 #define ENTITY_TYPE skill10
 

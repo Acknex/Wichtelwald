@@ -81,7 +81,6 @@ void actBall() {
 void throwSnowball() {
 	if (player == NULL) return;
 	
-	draw_text("TEST", 10, 10, COLOR_RED);
 	VECTOR vecSpawnPoint;
 	vec_set(vecSpawnPoint, vector(30,0,10));
 	vec_rotate(vecSpawnPoint, player.pan);
@@ -94,6 +93,12 @@ void throwSnowball() {
 	vec_scale(vBallForce.x, 24);
 	pXent_settype (entBall, PH_RIGID, PH_SPHERE);
 	pXent_addforcelocal (entBall, vBallForce, entBall.x);
+	
+	int sound = 1 + integer(random(2));
+	switch(sound) {
+		case 1: snd_play(sndThrow1, 100, 0); break;
+		case 2: snd_play(sndThrow2, 100, 0); break;
+	}
 }
 
 #endif
