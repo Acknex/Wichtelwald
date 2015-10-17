@@ -1,10 +1,9 @@
 #ifndef CAMERA_C_
 #define CAMERA_C_
     
+// Rotates the camera around the "me" target
 void actCameraRotateMenu() {
-
 	vec_set(vecCamTmp, my.x);
-	
 	while(1) {
 		cam_angle +=0.05 * time_step;
 		camera.x = cos(cam_angle) * 768;
@@ -13,6 +12,18 @@ void actCameraRotateMenu() {
 		vec_to_angle(camera.pan, vecCamTmp);
 		wait(1);
 	}
+}
+
+// Follows the player (top)
+void cameraTopPlayer() {
+	
+	//set(camera, ISOMETRIC);
+	
+	if (player == NULL) return;
+	camera.x = player.x - 150;
+	camera.y = player.y - 20;
+	camera.z = player.z + 300;
+	camera.tilt = 300;
 }
 
 #endif

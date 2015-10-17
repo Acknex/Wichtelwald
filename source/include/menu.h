@@ -17,5 +17,6 @@ PANEL* panMainMenu = NULL;
 PANEL* panTitle = NULL;
 
 void startMenu();
+void endMenu();
 
 #endif

@@ -2,6 +2,7 @@
 #define GAME_C_
 
 void startGame() {
+	endMenu();
 	level_load("maps//mainLevel.wmb");
 }
 
