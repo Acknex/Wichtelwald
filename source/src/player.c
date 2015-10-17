@@ -4,9 +4,9 @@
 void animatePlayer(VECTOR* _distAhead) {
 	
 	if (abs(_distAhead.x) > abs(_distAhead.y)) {
-		animationFactor = abs(_distAhead.x);
+		animationFactor = abs(_distAhead.x)*0.32;
 	} else {
-		animationFactor = abs(_distAhead.y);
+		animationFactor = abs(_distAhead.y)*0.32;
 	}
 	
 	if (animationFactor != 0)	{
@@ -45,15 +45,15 @@ void actPlayerMove() {
 	float traceDown = 0;
 	VECTOR vecPlayerMoveSpeed;
 	VECTOR vecPlayerRotation;
+	VECTOR vecTemp;
 	float cycleRotation = 0;
 	
 	while(1) {
 		traceDown = c_trace(my.x, vector(my.x,my.y,my.z-500), IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX );
 		
-		vec_set(vecPlayerMoveSpeed, vector((key_w - key_s) * time_step, (key_a - key_d) * time_step, -(traceDown - PLAYER_HEIGHT)));
-		
-		vecPlayerMoveSpeed.x *=WALK_SPEED+key_shiftl*RUN_SPEED;
-		vecPlayerMoveSpeed.y *=WALK_SPEED+key_shiftl*RUN_SPEED;
+		vec_set(vecTemp, vector((key_w - key_s), (key_a - key_d), 0.0));
+		vec_normalize(vecTemp, (WALK_SPEED+key_shiftl*RUN_SPEED)*time_step);
+		vec_set(vecPlayerMoveSpeed, vector(vecTemp.x, vecTemp.y, -(traceDown - PLAYER_HEIGHT)));
 		
 		vec_to_angle(vecPlayerRotation, vecPlayerMoveSpeed);
 		

@@ -1,8 +1,8 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-#define WALK_SPEED 4
-#define RUN_SPEED 6
+#define WALK_SPEED 10
+#define RUN_SPEED 10
 #define PLAYER_HEIGHT 6
 
 #define ANIMATION_PERCENTAGE skill1
