@@ -43,9 +43,13 @@ void startSnow() {
 		vecTemp.x = -1000 + random(2000);
 		vecTemp.y = -1000 + random(2000);
 		vecTemp.z = camera.z + 100;
-		effect(pSnow,maxv(1,random(30)),vecTemp,vector(0,0,-4));
+		effect(pSnow,maxv(1,random(10)),vecTemp,vector(0,0,-4));
 		wait(1);
 	}
+}
+
+void stopSnow() {
+	nWeatherType = -1;
 }
 
 void startRain() {

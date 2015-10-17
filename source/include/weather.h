@@ -24,6 +24,7 @@ int nWeatherType = 0;
 
 function pSnow(PARTICLE* p);
 void startSnow();
+void stopSnow();
 function pRain(PARTICLE* p);
 void startRain();
 void cloudsToggle();

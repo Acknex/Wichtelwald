@@ -5,21 +5,21 @@ void playMusicMenu() {
 	if (gameMusicHandle != 0) {
 		stopMusicGame();
 	}
-	menuMusicHandle = snd_loop(sndMusicMenu, 100, 0);
+	menuMusicHandle = snd_loop(sndMusicMenu, musicVolume, 0);
 }
 
 void playMusicGameDay() {
 	snd_stop(gameMusicHandle);
 	snd_stop(menuMusicHandle);
 	
-	gameMusicHandle = snd_loop(sndMusicGameDay, 100, 0);	
+	gameMusicHandle = snd_loop(sndMusicGameDay, musicVolume, 0);	
 }
 
 void playMusicGameNight() {
 	snd_stop(gameMusicHandle);
 	snd_stop(menuMusicHandle);
 	
-	gameMusicHandle = snd_loop(sndMusicGameNight, 100, 0);	
+	gameMusicHandle = snd_loop(sndMusicGameNight, musicVolume, 0);	
 }
 
 void stopMusicMenu() {

@@ -13,4 +13,8 @@ BMAP* bmapSnowballCount = "graphics//snowball.tga";
 PANEL* panSnowballCount = { bmap = bmapSnowballCount; layer = 12; }
 TEXT* txtSnowballCount = NULL;
 
+BMAP* bmapClock = "graphics//clock.tga";
+
+PANEL* panClock = { bmap = bmapClock; layer = 13; }
+
 #endif

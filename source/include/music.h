@@ -8,8 +8,13 @@ SOUND* sndMusicGameNight = "music//Song2_Tag.OGG";
 SOUND* sndThrow1 = "sounds//throw1.ogg";
 SOUND* sndThrow2 = "sounds//throw2.ogg";
 
+SOUND* sndDayStart = "sounds//Hahn.OGG";
+SOUND* sndNightStart = "sounds//Wolf.OGG";
+
 var menuMusicHandle = 0;
 var gameMusicHandle = 0;
+
+var musicVolume = 50;
 
 void playMusicMenu();
 void playMusicGameDay();
