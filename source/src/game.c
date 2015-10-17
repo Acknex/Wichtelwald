@@ -38,6 +38,8 @@ void startGame()
 		tree.pan = random(360);
 	}
 
+	var sunlightFactor = 0;
+	
 	while(1)
 	{
 		updateGui();
@@ -53,8 +55,8 @@ void startGame()
 		// Night start
 		if (dayTime == 20000) {
 			snd_play(sndNightStart, 100, 0);
-			camera.ambient = 0;
-			vec_set(sun_color.blue, vector(0,0,0));
+			//camera.ambient = 0;
+			//vec_set(sun_color.blue, vector(0,0,0));
 		}
 		
 		// Night
@@ -65,15 +67,12 @@ void startGame()
 		// Day start
 		if (dayTime == 8000) {
 			snd_play(sndDayStart, 100, 0);
-			camera.ambient = 50;
-			vec_set(sun_color.blue, vector(128,128,128));
+			//camera.ambient = 50;
+			//vec_set(sun_color.blue, vector(128,128,128));
 		}
 		
 		hours = dayTime / 1000;
 		minutes = (dayTime - (hours * 1000)) / 16.6;
-		
-		// Calculate ambient from 0 - 50
-		
 		
 		wait(1);
 	}
