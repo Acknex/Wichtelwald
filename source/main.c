@@ -21,6 +21,7 @@
 #include "weather.h"
 #include "system.h"
 #include "items.h"
+#include "hud.h"
 
 #include "menu.c"
 #include "game.c"
@@ -32,6 +33,7 @@
 #include "weather.c"
 #include "system.c"
 #include "items.c"
+#include "hud.c"
 
 void main() {
 	sysInit();
