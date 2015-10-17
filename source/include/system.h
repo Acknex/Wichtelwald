@@ -11,6 +11,7 @@
 #define SHOT 7
 
 #define ENTITY_TYPE skill10
+#define ATTACK_POWER skill11
 
 void sysInit();
 void cleanUpGame();
