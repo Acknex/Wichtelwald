@@ -12,14 +12,14 @@ void playMusicGameDay() {
 	snd_stop(gameMusicHandle);
 	snd_stop(menuMusicHandle);
 	
-	gameMusicHandle = snd_loop(sndMusicGame, 100, 0);	
+	gameMusicHandle = snd_loop(sndMusicGameDay, 100, 0);	
 }
 
 void playMusicGameNight() {
 	snd_stop(gameMusicHandle);
 	snd_stop(menuMusicHandle);
 	
-	gameMusicHandle = snd_loop(sndMusicGame, 100, 0);	
+	gameMusicHandle = snd_loop(sndMusicGameNight, 100, 0);	
 }
 
 void stopMusicMenu() {

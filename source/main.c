@@ -20,6 +20,7 @@
 #include "lensflare.h"
 #include "weather.h"
 #include "system.h"
+#include "items.h"
 
 #include "menu.c"
 #include "game.c"
@@ -30,6 +31,7 @@
 #include "lensflare.c"
 #include "weather.c"
 #include "system.c"
+#include "items.c"
 
 void main() {
 	sysInit();
