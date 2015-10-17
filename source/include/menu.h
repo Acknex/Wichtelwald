@@ -28,15 +28,7 @@ ENTITY* entRedDot = { type = "graphics//redDot.tga"; flags2 = SHOW; flags = BRIG
 ENTITY* entBlueDot = { type = "graphics//blueDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
 ENTITY* entYellowDot = { type = "graphics//yellowDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
 
-
-BMAP* bmapWoodCount = "graphics//wood.tga";
-PANEL* panWoodCount = { bmap = bmapWoodCount; layer = 12; }
-TEXT* txtWoodCount = NULL;
-
 void startMenu();
 void endMenu();
-
-void startIngameGUI();
-void endIngameGUI();
 
 #endif

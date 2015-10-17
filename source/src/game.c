@@ -7,6 +7,7 @@ void startGame()
 	level_load("maps//mainLevel.wmb");
 	gameCameraInit();
 	startIngameGUI();
+	playMusicGameDay();
 	on_space = throwSnowball;
 	
 	random_seed(8);
@@ -34,6 +35,12 @@ void startGame()
 		set(tree, PASSABLE);
 		vec_scale(tree.scale_x, random(0.5) + 0.5);
 		tree.pan = random(360);
+	}
+
+	while(1)
+	{
+		updateGui();
+		wait(1);
 	}
 }
 

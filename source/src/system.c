@@ -11,7 +11,7 @@ void sysInit() {
 	var scale = screen_size.y / 1200;
 	STRING* strTemp = "#64";	
 
-	str_printf(strTemp, "Boogaloo 2#%i", (int)(12 * scale));
+	str_printf(strTemp, "Boogaloo#%i", (int)(100 * scale));
 	ptr_remove(fontBoogaloo);
 	fontBoogaloo = font_create(strTemp);
 	
