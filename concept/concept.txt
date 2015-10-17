@@ -1,0 +1,48 @@
+Wintertraum
+=======================================================================
+
+
+Gameplay:
+=======================================================================
+
+- Tagsüber: Einsammeln von Holzscheiten und ablegen vor der Hütte
+	- Perspektive: Top-Down
+	- Einsammeln von Schneebällen
+	- Einleitung des Tags "Vogelgezwitscher"
+	- (Einsammeln von größeren Säcken zum Transportieren mehrer Schneebälle / Holz)
+	- 
+
+- Nachts: Verteidigen des Holzstapels vom Dach des Hauses ausgegen die Wichtel
+	- Perspektive: Ego
+	- Einleitung der Nacht "Wolfsgeheul"
+
+
+Steuerung:
+=======================================================================
+- Maus (Aiming und Schießen, Laufen per Linksklick)
+
+Scripts:
+=======================================================================
+Menü
+
+- Tag: Movement, Item collection, GUI / Inventar, Inventory House, Delivery on collision, Camera, Day-Night-Change, Schneefall
+
+- Nacht: Schießen, Wichteln Spawnen, Abziehen von Holz, Inventar Holz, Hinlaufen von Wichteln, Weglaufen von Wichteln, Treffen von Wichteln (Laufen weg, wenn sie getroffen werden -> lassen ihre Mütze fallen), Hütte getroffen (Wackeln der Hütte, ausfaden des Wichtels -> Abziehen von Holz)
+
+Sounds:
+=======================================================================
+- Wichtel, Einsammeln von Schneebällen / Holz, Vögel, Wolf, Taggeräusche, Nachtgeräusche, Bedrohlicher, schneller werdender Warnsound für Nacht.
+
+Musik:
+=======================================================================
+- Eins für Tag, eines für Nacht, eins fürs Menü
+
+
+Assets:
+=======================================================================
+- Bäume, Hütte, Holzscheite, Schneebälle, Player, Wichtel (2x Texturen), Level, Deco, Holzhaufen (4 Stufen)
+
+
+
+
+ 
