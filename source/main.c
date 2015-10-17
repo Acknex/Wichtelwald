@@ -11,6 +11,7 @@
 #define PRAGMA_PATH "models";
 #define PRAGMA_PATH "textures";
 
+#include "shadows/shadows.c"
 #include "menu.h"
 #include "game.h"
 #include "camera.h"
