@@ -111,6 +111,9 @@ void startMenu() {
 }
 
 void endMenu() {
+	
+	stopSnow();
+	
 	if (panTitle != NULL) {
 		reset(panTitle, SHOW);
 	}

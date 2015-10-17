@@ -9,6 +9,7 @@ void startGame()
 	startIngameGUI();
 	playMusicGameDay();
 	on_space = throwSnowball;
+	startSnow();
 	
 	random_seed(8);
 	
@@ -70,6 +71,9 @@ void startGame()
 		
 		hours = dayTime / 1000;
 		minutes = (dayTime - (hours * 1000)) / 16.6;
+		
+		// Calculate ambient from 0 - 50
+		
 		
 		wait(1);
 	}
