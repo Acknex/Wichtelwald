@@ -40,6 +40,7 @@ void actPlayerMove_2() {
 void actPlayerMove() {
 	
 	player = me;
+	my->trigger_range = 40;
 	c_setminmax(me);
 	
 	float traceDown = 0;
@@ -59,7 +60,7 @@ void actPlayerMove() {
 		
 		player.pan = vecPlayerRotation.x;
 		
-		c_move(me, nullvector, vecPlayerMoveSpeed.x, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE);
+		c_move(me, nullvector, vecPlayerMoveSpeed.x, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER);
 		animatePlayer(vecPlayerMoveSpeed);
 		cameraTopPlayer();
 		wait(1);

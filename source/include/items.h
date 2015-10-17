@@ -1,12 +1,10 @@
 #ifndef ITEMS_H_
 #define ITEMS_H_
 
-int woodCount = 0;
-int maxWoodCount = 3;
+#define is_collected  FLAG4
+#define ITEM_HEIGHT 40
 
-int snowballCount = 0;
-int maxSnowballCount = 20;
-
-action actWoodpile();
+action item_log();
+action item_life();
 
 #endif
