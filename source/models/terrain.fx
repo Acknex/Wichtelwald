@@ -57,7 +57,7 @@ float4 PS(VS_OUTPUT input) : COLOR
 	color.xyz = colorYZ*blendNormal.xxx + colorZX*blendNormal.yyy + colorXY*blendNormal.zzz;
 	color.a = 1.0f;
 	
-	float3 light = vecAmbient.rgb + vecSunColor.rgb*abs(dot(normalize(input.normal), vecSunDir.xyz))*1.0f;
+	float3 light = float3(0.5f, 0.5f, 0.5f) + vecSunColor.rgb*abs(dot(normalize(input.normal), vecSunDir.xyz))*0.5f;
 	color.rgb *= light;
 	
 	return color;
