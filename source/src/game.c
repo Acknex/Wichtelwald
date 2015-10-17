@@ -40,6 +40,37 @@ void startGame()
 	while(1)
 	{
 		updateGui();
+		dayTime +=DAY_TIME_SPEED;
+		if (dayTime >= 24000) {
+			dayTime = 0;
+		}
+		
+		// Day
+		if ((dayTime > 8000) && (dayTime < 20000)) {
+		}
+		
+		// Night start
+		if (dayTime == 20000) {
+			snd_play(sndNightStart, 100, 0);
+			camera.ambient = 0;
+			vec_set(sun_color.blue, vector(0,0,0));
+		}
+		
+		// Night
+		if ((dayTime > 20000) && (dayTime < 8000)) {
+			
+		}
+		
+		// Day start
+		if (dayTime == 8000) {
+			snd_play(sndDayStart, 100, 0);
+			camera.ambient = 50;
+			vec_set(sun_color.blue, vector(128,128,128));
+		}
+		
+		hours = dayTime / 1000;
+		minutes = (dayTime - (hours * 1000)) / 16.6;
+		
 		wait(1);
 	}
 }
