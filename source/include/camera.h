@@ -5,6 +5,8 @@ VECTOR vecCamTmp;
 float cam_angle = 0;
     
 action actCameraRotateMenu();
+void cameraTopPlayer();
+void gameCameraInit();
 
 
 #endif
