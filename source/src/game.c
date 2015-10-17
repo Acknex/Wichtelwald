@@ -4,6 +4,7 @@
 void startGame() {
 	endMenu();
 	level_load("maps//mainLevel.wmb");
+	gameCameraInit();
 }
 
 #endif

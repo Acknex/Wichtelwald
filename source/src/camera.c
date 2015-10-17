@@ -14,16 +14,19 @@ void actCameraRotateMenu() {
 	}
 }
 
+void gameCameraInit() {
+	//set(camera, ISOMETRIC);
+	camera.tilt = 310;
+}
+
 // Follows the player (top)
 void cameraTopPlayer() {
 	
 	//set(camera, ISOMETRIC);
-	
 	if (player == NULL) return;
-	camera.x = player.x - 150;
+	camera.x = player.x - 400;
 	camera.y = player.y - 20;
-	camera.z = player.z + 300;
-	camera.tilt = 300;
+	camera.z = player.z + 500;
 }
 
 #endif
