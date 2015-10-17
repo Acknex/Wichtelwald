@@ -1,4 +1,5 @@
 #include <acknex.h>
+#include <ackphysx.h>
 
 #define DEBUG
 #ifdef DEBUG

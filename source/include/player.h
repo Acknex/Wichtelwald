@@ -12,6 +12,7 @@ float animationFactor = 0;
 action actPlayerMove();
 void animatePlayer(VECTOR* _distAhead);
 
+action actBall();
 void throwSnowball();
 
 #endif
