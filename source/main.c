@@ -39,6 +39,7 @@
 
 void main() {
 	sysInit();
-	level_load("maps//menuLevel.wmb");
-	startMenu();
+	/*level_load("maps//menuLevel.wmb");
+	startMenu();*/
+	startGame();
 }
