@@ -28,6 +28,8 @@ void startMenu() {
 	set(panMainMenu, TRANSLUCENT | SHOW);
 	
 	initMouseMenu();
+	playMusicMenu();
+	startSnow();
 }
 
 void endMenu() {
