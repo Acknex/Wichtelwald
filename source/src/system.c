@@ -15,6 +15,8 @@ void sysInit() {
 	ptr_remove(fontBoogaloo);
 	fontBoogaloo = font_create(strTemp);
 	
+	fontBoogalooSmall = font_create("Boogaloo#30");
+	
 	exitFunction = on_exit;
 	
 	on_exit = cleanUpGame;
@@ -24,6 +26,10 @@ void cleanUpGame() {
 	physX_destroy();
 	RemoveFontResource("fonts//Boogaloo-Regular.otf");
 	exitFunction();
+}
+
+void exitGame() {
+	sys_exit("");
 }
 
 #endif

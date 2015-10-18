@@ -16,6 +16,8 @@
 void sysInit();
 void cleanUpGame();
 
+void exitGame();
+
 void (*exitFunction)();
 
 #endif

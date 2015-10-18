@@ -15,6 +15,7 @@ var menuMusicHandle = 0;
 var gameMusicHandle = 0;
 
 var musicVolume = 50;
+var soundVolume = 100;
 
 void playMusicMenu();
 void playMusicGameDay();

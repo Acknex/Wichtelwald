@@ -58,7 +58,7 @@ void startGame()
 		
 		// Night start
 		if (dayTime == 20000) {
-			snd_play(sndNightStart, 100, 0);
+			snd_play(sndNightStart, soundVolume, 0);
 			//camera.ambient = 0;
 			//vec_set(sun_color.blue, vector(0,0,0));
 		}
@@ -70,7 +70,7 @@ void startGame()
 		
 		// Day start
 		if (dayTime == 8000) {
-			snd_play(sndDayStart, 100, 0);
+			snd_play(sndDayStart, soundVolume, 0);
 			//camera.ambient = 50;
 			//vec_set(sun_color.blue, vector(128,128,128));
 		}
