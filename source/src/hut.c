@@ -190,6 +190,7 @@ action woodlog()
 action hut()
 {
 	entHut = me;
+	my->ENTITY_TYPE = HUT;
 	my->trigger_range = 200;
 	my->emask |= ENABLE_TRIGGER | ENABLE_IMPACT;
 	my->event = hut_event;	
@@ -208,15 +209,16 @@ action hut_light()
 	set(me, PASSABLE | INVISIBLE);
 
 	COLOR fireColor;
-	vec_set (&fireColor, vector(28,145,194));
+	vec_set(&fireColor, vector(28,145,194));
 	vec_set(&my->blue, &fireColor);
+	set(my, LIGHT);
 	
 	while(1)
 	{
 		if (dayOrNight == NIGHT)
 		{
 			my->red = fireColor.red + random(20) - 10;
-			my->lightrange = random(100) + 50;
+			my->lightrange = random(200) + 400;
 		}
 		wait (-0.1 - random(0.2));
 	}
