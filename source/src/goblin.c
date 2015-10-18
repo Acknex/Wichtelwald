@@ -1,7 +1,6 @@
 #ifndef GOBLIN_C
 #define GOBLIN_C
 
-var goblinSpawnDelay = 16*3;
 var goblinSpeed = 5;
 
 var goblinSpawnDist = 1300;

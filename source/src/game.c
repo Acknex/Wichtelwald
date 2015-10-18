@@ -52,6 +52,7 @@ void startGame()
 	pssm_run(4);
 
 	var sunlightFactor = 0;
+	var dayCounter = 0;
 	while(1)
 	{
 		updateGui();
@@ -62,6 +63,9 @@ void startGame()
 		if(dayTime >= 86400)
 		{
 			dayTime -= 86400;
+			dayCounter += 1;
+			
+			goblinSpawnDelay = maxv(16.0*3.0-dayCounter*2, 1);
 		}
 		
 		hours = integer(dayTime/60.0/60.0);
