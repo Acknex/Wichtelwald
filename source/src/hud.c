@@ -95,4 +95,8 @@ void hideHutItems() {
 	reset(panSmallSnowballCount, SHOW);	
 }
 
+int isHutItemsVisible() {
+	return is(panHut, SHOW);
+}
+
 #endif
