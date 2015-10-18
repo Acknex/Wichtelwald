@@ -3,7 +3,6 @@
 
 var hutSnowballTodo = 0;
 var hutWoodTodo = 0;
-var hutShake = 0;
 
 BMAP* bmpSmoke = "rauch2.tga";
 SOUND* sndTransferHut = "present_counter.OGG";
@@ -129,6 +128,14 @@ void hut_count()
 	}
 }
 
+void hut_restart()
+{
+	hutSnowballTodo = 0;
+	hutWoodTodo = 0;
+	hutSnowballCount = 0;
+	hutWoodCount = 0;
+}
+
 void hut_hit()
 {
 	VECTOR vecPos;
@@ -137,6 +144,7 @@ void hut_hit()
 	snd_play(sndHitHut, soundVolume, 0);
 
 	hutWoodCount = maxv(hutWoodCount - your->ATTACK_POWER, 0);
+	shake();
 	if (hutWoodCount <= 0)
 	{
 		set(my, is_empty);
@@ -179,6 +187,7 @@ action hut()
 	}
 	
 	//game over
+	gameOver();
 	//error("Nun.. jetzt hab ich wohl verkackt");
 }
 

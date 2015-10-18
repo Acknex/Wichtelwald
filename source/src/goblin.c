@@ -84,7 +84,7 @@ void goblin()
 		ent_animate(me, "victory", (my->gobboDist % 20) * 5, 0);
 	}
 
-	if (!is(my, is_collided))
+	if (!is(my, is_collided) && is(my, is_dead))
 	{
 		ent_create("hat.mdl", my->x, goblin_hat);
 	}
@@ -99,7 +99,7 @@ void goblin_event()
 	{
 		if (you != NULL)
 		{
-			if (your->ENTITY_TYPE == SNOWBALL)
+			if (your->ENTITY_TYPE == SHOT)
 			{	
 				set (my, is_dead);
 				//shot by snowball

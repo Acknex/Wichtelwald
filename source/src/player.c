@@ -65,6 +65,7 @@ void actPlayerShoot() {
 
 void actBall() {
 	wait(-5);
+	my->ENTITY_TYPE = SHOT;
 	pXent_settype(me, 0, 0);
 	while(my.scale_x > 0) {
 		my.scale_x -=0.1;
