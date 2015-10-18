@@ -17,7 +17,7 @@ void startMenu() {
 	if (panMainMenu == NULL) {
 		panMainMenu = pan_create("", 10);
 		panMainMenu.bmap = bmapMainMenu;
-		panMainMenu.pos_x = 10;
+		panMainMenu.pos_x = screen_size.x / 2 - bmap_width(bmapMainMenu) / 2;
 		panMainMenu.pos_y = screen_size.y / 2 - bmap_height(bmapMainMenu) / 2;
 		panMainMenu.alpha = 60;
 		

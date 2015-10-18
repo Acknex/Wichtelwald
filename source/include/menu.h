@@ -7,43 +7,43 @@ FONT* fontBoogaloo = NULL;
 FONT* fontBoogalooSmall = NULL;
 FONT* fontBoogalooMini = NULL;
 
-BMAP* bmapNewGameButtonOn = "graphics//newGameButtonUp.bmp";
-BMAP* bmapNewGameButtonOff = "graphics//newGameButtonDown.bmp";
-BMAP* bmapCreditsButtonOn = "graphics//creditsButtonUp.bmp";
-BMAP* bmapCreditsButtonOff = "graphics//creditsButtonDown.bmp";
-BMAP* bmapEndGameButtonOn = "graphics//endGameButtonUp.bmp";
-BMAP* bmapEndGameButtonOff = "graphics//endGameButtonDown.bmp";
-BMAP* bmapOptionsButtonOn = "graphics//optionsButtonUp.bmp";
-BMAP* bmapOptionsButtonOff = "graphics//optionsButtonDown.bmp";
-BMAP* bmapOkButtonOn = "graphics//okButtonUp.bmp";
-BMAP* bmapOkButtonOff = "graphics//okButtonDown.bmp";
-BMAP* bmapCancelButtonOn = "graphics//cancelButtonUp.bmp";
-BMAP* bmapCancelButtonOff = "graphics//cancelButtonDown.bmp";
+BMAP* bmapNewGameButtonOn = "newGameButtonUp.bmp";
+BMAP* bmapNewGameButtonOff = "newGameButtonDown.bmp";
+BMAP* bmapCreditsButtonOn = "creditsButtonUp.bmp";
+BMAP* bmapCreditsButtonOff = "creditsButtonDown.bmp";
+BMAP* bmapEndGameButtonOn = "endGameButtonUp.bmp";
+BMAP* bmapEndGameButtonOff = "endGameButtonDown.bmp";
+BMAP* bmapOptionsButtonOn = "optionsButtonUp.bmp";
+BMAP* bmapOptionsButtonOff = "optionsButtonDown.bmp";
+BMAP* bmapOkButtonOn = "okButtonUp.bmp";
+BMAP* bmapOkButtonOff = "okButtonDown.bmp";
+BMAP* bmapCancelButtonOn = "cancelButtonUp.bmp";
+BMAP* bmapCancelButtonOff = "cancelButtonDown.bmp";
 
-BMAP* bmapTitle = "graphics//titleLarge.tga";
-BMAP* bmapMainMenu = "graphics//mainMenu.bmp";
+BMAP* bmapTitle = "titleLarge.tga";
+BMAP* bmapMainMenu = "mainMenu.bmp";
 
-BMAP* bmapRedDot = "graphics//redDot.tga";
-BMAP* bmapYellowDot = "graphics//yellowDot.tga";
-BMAP* bmapGreenDot = "graphics//greenDot.tga";
-BMAP* bmapBlueDot = "graphics//blueDot.tga";
+BMAP* bmapRedDot = "redDot.tga";
+BMAP* bmapYellowDot = "yellowDot.tga";
+BMAP* bmapGreenDot = "greenDot.tga";
+BMAP* bmapBlueDot = "blueDot.tga";
 
 PANEL* panMainMenu = NULL;
 PANEL* panTitle = NULL;
 
 PANEL* panOptions = NULL;
-BMAP* bmapOptionsMenu = "graphics//optionsBg.bmp";
-BMAP* bmapSlider = "graphics//slider.bmp";
-BMAP* bmapKnob = "graphics//knob.bmp";
+BMAP* bmapOptionsMenu = "optionsBg.bmp";
+BMAP* bmapSlider = "slider.bmp";
+BMAP* bmapKnob = "knob.bmp";
 TEXT* txtSoundOption = { strings = 1; layer = 13; }
 TEXT* txtMusicOption = { strings = 1; layer = 13; }
 
 PANEL* panCredits = NULL;
 
-ENTITY* entGreenDot = { type = "graphics//greenDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
-ENTITY* entRedDot = { type = "graphics//redDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
-ENTITY* entBlueDot = { type = "graphics//blueDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
-ENTITY* entYellowDot = { type = "graphics//yellowDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
+ENTITY* entGreenDot = { type = "greenDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
+ENTITY* entRedDot = { type = "redDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
+ENTITY* entBlueDot = { type = "blueDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
+ENTITY* entYellowDot = { type = "yellowDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
 
 void startMenu();
 void endMenu();
