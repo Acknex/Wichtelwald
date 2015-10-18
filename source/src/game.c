@@ -11,7 +11,7 @@ void startGame()
 	on_space = throwSnowball;
 	startSnow();
 	
-	sun_light = 100;
+	sun_light = 20;
 	
 	random_seed(8);
 	
@@ -47,36 +47,44 @@ void startGame()
 	while(1)
 	{
 		updateGui();
-		dayTime +=DAY_TIME_SPEED;
-		if (dayTime >= 24000) {
+		
+		dayTime += DAY_TIME_SPEED;
+		if(dayTime >= 86400)
+		{
 			dayTime = 0;
 		}
 		
+		hours = dayTime/60/60;
+		minutes = (dayTime-hours*60*60)/60;
+		
+		sunlightFactor = sinv((dayTime-28800.0)/(60.0*60.0*12.0)*180.0);
+		
 		// Day
-		if ((dayTime > 8000) && (dayTime < 20000)) {
+		if(sunlightFactor > 0.0)
+		{
+			sun_light = sunlightFactor*100;
 		}
 		
 		// Night start
-		if (dayTime == 20000) {
+		if(dayTime == 72000)
+		{
 			snd_play(sndNightStart, 100, 0);
-			//camera.ambient = 0;
-			//vec_set(sun_color.blue, vector(0,0,0));
 		}
 		
 		// Night
-		if ((dayTime > 20000) && (dayTime < 8000)) {
-			
+		if(sunlightFactor <= 0.0)
+		{
+			sun_light = -sunlightFactor*30;
 		}
 		
 		// Day start
-		if (dayTime == 8000) {
+		if (dayTime == 28800)
+		{
 			snd_play(sndDayStart, 100, 0);
-			//camera.ambient = 50;
-			//vec_set(sun_color.blue, vector(128,128,128));
 		}
 		
-		hours = dayTime / 1000;
-		minutes = (dayTime - (hours * 1000)) / 16.6;
+		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;
+		sun_angle.tilt = abs(ang(asinv(sunlightFactor)))*70.0/180.0+10.0;
 		
 		wait(1);
 	}
