@@ -42,6 +42,6 @@
 
 void main() {
 	sysInit();
-	level_load("maps//menuLevel.wmb");
+	level_load("maps//menuLevel2.wmb");
 	startMenu();
 }

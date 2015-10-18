@@ -103,6 +103,7 @@ void goblin_event()
 			{	
 				set (my, is_dead);
 				//shot by snowball
+				ent_remove(you);
 			}
 		}
 	}
@@ -115,6 +116,22 @@ void goblin_hat()
 	if (c_trace(&my->x, vector(my->x, my->y, my->z - 1000), IGNORE_ME | IGNORE_PASSABLE | IGNORE_PASSENTS) > 0)
 	{
 		my->z = hit->z - my->min_z;
+	}
+}
+
+void goblin_stand() {
+	while(me) {
+		my.ANIMATION_PERCENTAGE += 0.8;
+		ent_animate(me, "talk ", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
+		wait(1);
+	}
+}
+
+void goblin_stand2() {
+	while(me) {
+		my.ANIMATION_PERCENTAGE += 0.8;
+		ent_animate(me, "victory ", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
+		wait(1);
 	}
 }
 #endif
