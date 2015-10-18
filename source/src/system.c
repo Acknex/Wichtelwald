@@ -8,7 +8,6 @@ void sysInit() {
 	video_screen = 1;
 	fps_max = 30;
 	max_particles = 25000;
-	physX_open();
 	AddFontResource("fonts//Boogaloo-Regular.otf");
 
 	var scale = screen_size.y / 1200;
@@ -27,7 +26,6 @@ void sysInit() {
 }
 
 void cleanUpGame() {
-	physX_destroy();
 	RemoveFontResource("fonts//Boogaloo-Regular.otf");
 	exitFunction();
 }

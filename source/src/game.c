@@ -5,7 +5,7 @@ void startGame()
 {
 	reset_hints();
 	endMenu();
-	level_load("maps//mainLevel.wmb");
+	level_load("mainLevel.wmb");
 	on_esc = NULL;
 	gameCameraInit();
 	startIngameGUI();

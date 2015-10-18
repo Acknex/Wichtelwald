@@ -6,3 +6,4 @@ PATH "include"
 PATH "music"
 PATH "models";
 PATH "fonts";
+PATH "maps";
