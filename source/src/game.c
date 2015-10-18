@@ -5,7 +5,7 @@ void startGame()
 {
 	reset_hints();
 	endMenu();
-	level_load("maps//mainLevel.wmb");
+	level_load("mainLevel.wmb");
 	on_esc = NULL;
 	gameCameraInit();
 	startIngameGUI();
@@ -25,7 +25,7 @@ void startGame()
 	
 	VECTOR tempVector;
 	int i;
-	for(i = 0; i < 150; i++)
+	for(i = 0; i < 100; i++)
 	{
 		vec_set(tempVector, vector(random(6400)-3200, random(6400)-3200, 0));
 		if(vec_length(tempVector) < 800)
@@ -35,7 +35,7 @@ void startGame()
 		}
 		
 		tempVector.z = 5000;
-		tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE);
+		tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE|IGNORE_FLAG2);
 		if(hit.nz < 0.5)
 		{
 			i--;
@@ -52,6 +52,7 @@ void startGame()
 	pssm_run(4);
 
 	var sunlightFactor = 0;
+	var dayCounter = 0;
 	while(1)
 	{
 		updateGui();
@@ -62,6 +63,9 @@ void startGame()
 		if(dayTime >= 86400)
 		{
 			dayTime -= 86400;
+			dayCounter += 1;
+			
+			goblinSpawnDelay = maxv(16.0*3.0-dayCounter*2, 1);
 		}
 		
 		hours = integer(dayTime/60.0/60.0);

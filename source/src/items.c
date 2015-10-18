@@ -15,6 +15,9 @@ int maxSnowballCount = 20;
 var itemSpawnDelay = 10;
 var itemSpawnTimer = 0;
 
+var itemCounter = 0;
+var itemMax = 300;
+
 void item_loop();
 void item_fade();
 void item_wood_evt();
@@ -105,6 +108,7 @@ void item_fade()
 		vec_add(&my->x, &player->x);
 		wait(1);
 	}
+	itemCounter--;
 	ptr_remove(me);
 }
 
@@ -180,6 +184,8 @@ void item_spawn_loop()
 
 void item_spawn()
 {
+	if (itemCounter >= itemMax) return;
+	
 	VECTOR tempVector;
 	vec_set(tempVector, vector(random(6400)-3200, random(6400)-3200, 0));
 	if(vec_length(tempVector) < 400)
@@ -188,7 +194,7 @@ void item_spawn()
 	}
 	
 	tempVector.z = 5000;
-	tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE) - ITEM_HEIGHT;
+	tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE|IGNORE_FLAG2) - ITEM_HEIGHT;
 	if(hit.nz < 0.5)
 	{
 		return;
@@ -200,6 +206,7 @@ void item_spawn()
 	else
 		item = ent_create("snowball.mdl", tempVector, item_snowball);
 	item.pan = random(360);
+	itemCounter++;
 }
 
 

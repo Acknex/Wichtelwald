@@ -17,6 +17,7 @@
 #define PRAGMA_PATH "sounds";
 #define PRAGMA_PATH "music";
 #define PRAGMA_PATH "maps";
+#define PRAGMA_PATH "graphics";
 
 #include "shadows.c"
 #include "menu.h"
