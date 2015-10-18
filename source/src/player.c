@@ -64,9 +64,21 @@ void actPlayerShoot() {
 }
 
 void actBall() {
-	wait(-5);
 	my->ENTITY_TYPE = SHOT;
-	pXent_settype(me, 0, 0);
+	my->trigger_range = 40;
+	
+	VECTOR vBallForce;
+	vec_for_angle(vBallForce.x, vector(camera.pan, camera.tilt + 3, camera.roll));
+	vec_scale(vBallForce.x, 24);
+	
+	int counter = 1000;
+	
+	while(counter > 0) {
+		c_move(me, vBallForce.x, nullvector, ACTIVATE_TRIGGER | IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX);
+		counter -=1 * time_step;
+		wait(1);
+	}
+		
 	while(my.scale_x > 0) {
 		my.scale_x -=0.1;
 		my.scale_y -=0.1;
@@ -88,11 +100,9 @@ void throwSnowball() {
 		
 		
 		ENTITY* entBall = ent_create ("models//snowball.mdl", vecSpawnPoint, actBall);
-		VECTOR vBallForce;
-		vec_for_angle(vBallForce.x, vector(camera.pan, camera.tilt + 3, camera.roll));
-		vec_scale(vBallForce.x, 24);
-		pXent_settype (entBall, PH_RIGID, PH_SPHERE);
-		pXent_addforcelocal (entBall, vBallForce, entBall.x);
+		
+		//pXent_settype (entBall, PH_RIGID, PH_SPHERE);
+		//pXent_addforcelocal (entBall, vBallForce, entBall.x);
 		
 		int sound = 1 + integer(random(2));
 		switch(sound) {
