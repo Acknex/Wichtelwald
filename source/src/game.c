@@ -35,7 +35,7 @@ void startGame()
 		}
 		
 		tempVector.z = 5000;
-		tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE);
+		tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE|IGNORE_FLAG2);
 		if(hit.nz < 0.5)
 		{
 			i--;

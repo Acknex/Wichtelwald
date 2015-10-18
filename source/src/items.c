@@ -188,7 +188,7 @@ void item_spawn()
 	}
 	
 	tempVector.z = 5000;
-	tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE) - ITEM_HEIGHT;
+	tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE|IGNORE_FLAG2) - ITEM_HEIGHT;
 	if(hit.nz < 0.5)
 	{
 		return;
