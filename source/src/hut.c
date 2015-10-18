@@ -1,8 +1,6 @@
 #ifndef HUT_C
 #define HUT_C
 
-var hutSnowballCount = 0;
-var hutWoodCount = 0;
 var hutSnowballTodo = 0;
 var hutWoodTodo = 0;
 var hutShake = 0;
