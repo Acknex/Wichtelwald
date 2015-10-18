@@ -23,9 +23,8 @@ void startMenu() {
 		
 		pan_setbutton(panMainMenu, 0, 0, 10, 10, bmapNewGameButtonOn, bmapNewGameButtonOff, bmapNewGameButtonOn, bmapNewGameButtonOff, startGame, NULL, NULL);
 		pan_setbutton(panMainMenu, 0, 0, 10, 50, bmapOptionsButtonOn, bmapOptionsButtonOff, bmapOptionsButtonOn, bmapOptionsButtonOff, showOptions, NULL, NULL);
-		pan_setbutton(panMainMenu, 0, 0, 10, 90, bmapCreditsButtonOn, bmapCreditsButtonOff, bmapCreditsButtonOn, bmapCreditsButtonOff, startGame, NULL, NULL);
+		pan_setbutton(panMainMenu, 0, 0, 10, 90, bmapCreditsButtonOn, bmapCreditsButtonOff, bmapCreditsButtonOn, bmapCreditsButtonOff, showCredits, NULL, NULL);
 		pan_setbutton(panMainMenu, 0, 0, 10, 130, bmapEndGameButtonOn, bmapEndGameButtonOff, bmapEndGameButtonOn, bmapEndGameButtonOff, exitGame, NULL, NULL);
-		
 	}
 	
 	vec_set(entGreenDot.x, vector(200, 35, 55));
@@ -176,6 +175,32 @@ void closeOptions() {
 		reset(txtMusicOption, SHOW);
 		set(panMainMenu, SHOW);
 	}
+}
+
+void showCredits() {
+	
+	if (panMainMenu != NULL) {
+		reset(panMainMenu, SHOW);
+	}
+	
+	if (panCredits == NULL) {
+		panCredits = pan_create("", 12);
+		panCredits.bmap = bmapOptionsMenu;
+		
+		pan_setdigits(panCredits, 0, 10, 10, "Credits:", fontBoogaloo, 1, digitDummy);
+		pan_setdigits(panCredits, 0, 10, 65, "Robert Jäger: Coding and Modelling\nRuben Freiknecht: Music and Sounds\nNils Daumann: Coding and Graphics\nJonas Freiknecht: Coding and UI", fontBoogalooSmall, 1, digitDummy);
+		pan_setbutton(panCredits, 0, 0, 320, 200, bmapOkButtonOn, bmapOkButtonOff, bmapOkButtonOn, bmapOkButtonOff, closeCredits, NULL, NULL);
+	}
+	
+	panCredits.pos_x = screen_size.x / 2 - bmap_width(bmapOptionsMenu) / 2;
+	panCredits.pos_y = 150;
+	panCredits.alpha = 60;
+	set(panCredits, TRANSLUCENT | SHOW);
+}
+
+void closeCredits() {
+		reset(panCredits, SHOW);
+		set(panMainMenu, SHOW);
 }
 
 

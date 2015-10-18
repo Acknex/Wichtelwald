@@ -19,6 +19,7 @@ void sysInit() {
 	fontBoogaloo = font_create(strTemp);
 	
 	fontBoogalooSmall = font_create("Boogaloo#30");
+	fontBoogalooMini = font_create("Boogaloo#20");
 	
 	exitFunction = on_exit;
 	
