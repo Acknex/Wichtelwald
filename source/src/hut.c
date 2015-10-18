@@ -16,6 +16,7 @@ void hut_event();
 void hut_count();
 void hut_hit();
 
+var isHutItemsVisible();
 
 void fade_p(PARTICLE* p)
 {
@@ -103,25 +104,35 @@ void hut_count()
 		
 		if (added > 0)
 		{
+			if (!isHutItemsVisible())
+			{
+				showHutItems();	
+				wait (-0.3);
+			}
 			snd_play(sndTransferHut, soundVolume, 0);
-			//show panel	
+			wait (-0.2);
 		}
 		
 		if (added < 0)
 		{
 			snd_play(sndLoseHut, soundVolume, 0);
+			wait (-0.2);
 		}
 		
 		if (dayOrNight == DAY)
 		{
-			wait (-0.2);
-			//hide panel
+			if (added == 0 && isHutItemsVisible())			
+			{
+				wait (-0.3);
+				hideHutItems();
+			}
 		}
 		else
 		{
-			//show panel	
-			wait (-0.2);
+			showHutItems();	
 		}
+		
+		wait(1);
 	}
 }
 
@@ -193,8 +204,10 @@ action hut()
 
 action hut_light()
 {
+	set(me, PASSABLE | INVISIBLE);
+
 	COLOR fireColor;
-	vec_set (&fireColor, vector(200,200,200));
+	vec_set (&fireColor, vector(28,145,194));
 	vec_set(&my->blue, &fireColor);
 	
 	while(1)

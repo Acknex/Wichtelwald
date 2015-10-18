@@ -37,7 +37,7 @@ action item_snowball()
 void item_loop()
 {
 	my->emask |= ENABLE_TRIGGER; 
-	my->trigger_range = 20;
+	my->trigger_range = 30;
 	set (me, PASSABLE);
 	my->pan = random(360);
 	var vZ = my->z;
@@ -134,7 +134,7 @@ void item_particle (PARTICLE *p)
 	vec_randomize(&vecTemp, 10);
 	vec_normalize(&vecTemp, 1);
 	vec_add (&p->vel_x, &vecTemp);
-	vec_set(&p->blue, vector(150, 150, 0));
+	vec_set(&p->blue, vector(0, 150, 150));
 	set(p, MOVE | TRANSLUCENT /*| BRIGHT*/);
 	p->lifespan = 80;
 	p->size  = 15 + random(5);
