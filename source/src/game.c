@@ -63,8 +63,8 @@ void startGame()
 			dayTime -= 86400;
 		}
 		
-		hours = integer(dayTime)/60/60;
-		minutes = (integer(dayTime)-hours*60*60)/60;
+		hours = integer(dayTime/60.0/60.0);
+		minutes = (integer(dayTime)-hours*60.0*60.0)/60.0;
 		
 		sunlightFactor = sinv((dayTime-28800.0)/(60.0*60.0*12.0)*180.0);
 		

@@ -52,11 +52,11 @@ void startIngameGUI() {
 	
 	pan_setneedle(panClock,0, bmap_width(bmapClock) / 2, bmap_height(bmapClock) / 2,
 		bmap_fill(bmap_createblack(30,4,32),vector(0,0,0),100),
-		4,2,90,12,0, hours);
+		4,2,90,12,0, &hours);
 	
 	pan_setneedle(panClock,0, bmap_width(bmapClock) / 2, bmap_height(bmapClock) / 2,
 		bmap_fill(bmap_createblack(40,2,32),vector(0,0,0),100),
-		4,1,90,60,0, minutes);
+		4,1,90,60,0, &minutes);
 }
 
 void endIngameGUI() {
