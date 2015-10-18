@@ -1,7 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#define DAY_TIME_SPEED 80
+#define DAY_TIME_SPEED 150
 
 #define DAY 0
 #define NIGHT 1
@@ -16,6 +16,10 @@ var isGameOver = 0;
 
 void backToMenu();
 void startGame();
+
+void startNight();
+void startDay();
+void fadeWithBlack(void *block);
 
 void gameOver();
 

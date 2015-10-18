@@ -71,14 +71,7 @@ void startGame()
 		// Day start
 		if(dayTime >= 28800 && dayOrNight == NIGHT && dayTime < 72000)
 		{
-			dayOrNight = DAY;
-			snd_play(sndDayStart, soundVolume, 0);
-			on_space = NULL;
-			ent_remove(player);
-			mouse_mode = 0;
-			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
-			stopMusicGame();
-			playMusicGameDay();
+			fadeWithBlack(startDay);
 		}
 		
 		// Day
@@ -90,20 +83,12 @@ void startGame()
 		// Night start
 		if(dayTime >= 72000 && dayOrNight == DAY)
 		{
-			dayOrNight = NIGHT;
-			snd_play(sndNightStart, soundVolume, 0);
-			mouse_mode = 1;
-			ent_remove(player);
-			ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
-			on_space = throwSnowball;
-			stopMusicGame();
-			playMusicGameNight();
+			fadeWithBlack(startNight);
 		}
 		
 		// Night
 		if(sunlightFactor <= 0.0)
 		{
-
 			sun_light = -sunlightFactor*30;
 		}
 		
@@ -159,6 +144,55 @@ void gameOver() {
 	reset(panGameOver, SHOW);
 	isGameOver = 0;
 	backToMenu();
+}
+
+void startDay()
+{
+	dayOrNight = DAY;
+	snd_play(sndDayStart, soundVolume, 0);
+	on_space = NULL;
+	ent_remove(player);
+	mouse_mode = 0;
+	ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
+	stopMusicGame();
+	playMusicGameDay();
+}
+
+void startNight()
+{
+	dayOrNight = NIGHT;
+	snd_play(sndNightStart, soundVolume, 0);
+	mouse_mode = 1;
+	ent_remove(player);
+	ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
+	on_space = throwSnowball;
+	stopMusicGame();
+	playMusicGameNight();
+}
+
+void fadeWithBlack(void *block)
+{
+	PANEL *panel = pan_create(NULL, 100);
+	panel.bmap = bmap_createblack(screen_size.x, screen_size.y, 24);
+	set(panel, SHOW|TRANSLUCENT);
+	
+	while(panel.alpha < 100)
+	{
+		panel.alpha += time_step * 8.0;
+		wait(1);
+	}
+	
+	void (*blubb)();
+	blubb = block;
+	blubb();
+	
+	while(panel.alpha > 0)
+	{
+		panel.alpha -= time_step * 8.0;
+		wait(1);
+	}
+	
+	ptr_remove(panel);
 }
 
 #endif
