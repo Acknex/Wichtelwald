@@ -72,6 +72,7 @@ void startGame()
 		// Day start
 		if(dayTime >= 28800 && dayOrNight == NIGHT && dayTime < 72000)
 		{
+			dayOrNight = 3;
 			fadeWithBlack(startDay);
 		}
 		
@@ -84,6 +85,7 @@ void startGame()
 		// Night start
 		if(dayTime >= 72000 && dayOrNight == DAY)
 		{
+			dayOrNight = 3;
 			fadeWithBlack(startNight);
 		}
 		
