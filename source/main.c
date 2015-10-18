@@ -52,6 +52,7 @@
 
 void main() {
 	sysInit();
+	wait(1);
 	level_load("menuLevel2.wmb");
 	startMenu();
 }
