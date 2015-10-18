@@ -7,4 +7,6 @@
 
 void goblin_loop();
 
+void goblin_stand();
+
 #endif
