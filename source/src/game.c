@@ -105,6 +105,12 @@ void startGame()
 		d3d_fogcolor1.green = sun_light*255.0/100.0;
 		d3d_fogcolor1.blue = sun_light*255.0/100.0;
 		
+		if (key_l) {
+			while(key_l) wait(1);
+			shake();
+		}
+		
+		
 		if (key_esc) {
 			while(key_esc) wait(1);
 			break;
@@ -119,6 +125,28 @@ void backToMenu() {
 	endIngameGUI();
 	level_load("maps//menuLevel.wmb");
 	startMenu();
+}
+
+void gameOver() {
+	ent_remove(player);
+	panGameOver.pos_x = screen_size.x / 2 - bmap_width(bmapGameOver) / 2;
+	panGameOver.pos_y = screen_size.y / 2 - bmap_height(bmapGameOver) / 2;
+	set(panGameOver, SHOW);
+	
+	vec_set(vecCamTmp, entHut.x);
+	int counter = 1000;
+	while(counter > 0) {
+		cam_angle +=0.005 * time_step;
+		camera.x = cos(cam_angle) * 768;
+		camera.y = sin(cam_angle) * 768;
+		vec_diff(vecCamTmp.x, nullvector, camera.x);
+		vec_to_angle(camera.pan, vecCamTmp);
+		counter--;
+		wait(1);
+	}
+	
+	reset(panGameOver, SHOW);
+	backToMenu();
 }
 
 #endif

@@ -29,4 +29,7 @@ TEXT* txtHutSnowballCount = NULL;
 PANEL* panSmallSnowballCount = { bmap = bmapSnowballCount; layer = 14; scale_x = 0.5; scale_y = 0.5; flags = TRANSLUCENT; }
 PANEL* panSmallWoodCount = { bmap = bmapWoodCount; layer = 14; scale_x = 0.5; scale_y = 0.5; flags = TRANSLUCENT; }
 
+BMAP* bmapGameOver = "graphics//gameOver.tga";
+PANEL* panGameOver = { bmap = bmapGameOver; layer = 20; }
+
 #endif

@@ -16,4 +16,6 @@ var minutes = 0;
 void backToMenu();
 void startGame();
 
+void gameOver();
+
 #endif

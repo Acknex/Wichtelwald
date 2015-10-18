@@ -103,4 +103,15 @@ void throwSnowball() {
 	}
 }
 
+void shake() {
+	proc_kill(shake);
+	shakeTime +=20;
+	while(shakeTime > 0) {
+		camera.roll = random(10);
+		shakeTime--;
+		wait(1);
+	}
+	camera.roll = 0;
+}
+
 #endif
