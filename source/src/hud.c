@@ -95,4 +95,8 @@ void hideHutItems() {
 	reset(panSmallSnowballCount, SHOW);	
 }
 
+var isHutItemsVisible() {
+	return is(panHut, SHOW);
+}
+
 #endif
