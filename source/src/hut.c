@@ -174,7 +174,7 @@ action smoke()
 		partout += time_step;
 		while(partout > 1)
 		{
-			effect(smoke_p, 2,
+			effect(smoke_p, 5,
 			_vec(me.x+random(10)-5, me.y+random(10)-5, me.z+random(10)-5),
 			_vec(-5-random(10), -2-random(4), 2+random(4)));
 			partout -= 1;
@@ -189,6 +189,7 @@ action woodlog()
 
 action hut()
 {
+	entHut = me;
 	my->trigger_range = 200;
 	my->emask |= ENABLE_TRIGGER | ENABLE_IMPACT;
 	my->event = hut_event;	

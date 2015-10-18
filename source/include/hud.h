@@ -21,11 +21,12 @@ BMAP* bmapClock = "graphics//clock.tga";
 
 PANEL* panClock = { bmap = bmapClock; layer = 13; }
 
+PANEL* panHutBg = { flags = LIGHT | TRANSLUCENT; red = 0; blue = 0; green = 0; size_x = 140; size_y = 130; alpha = 60; layer = 12;}
 BMAP* bmapHut = "graphics//hut.tga";
-PANEL* panHut = { bmap = bmapHut; layer = 13; }
+PANEL* panHut = { bmap = bmapHut; layer = 13; flags = TRANSLUCENT; }
 TEXT* txtHutWoodCount = NULL;
 TEXT* txtHutSnowballCount = NULL;
-PANEL* panSmallSnowballCount = { bmap = bmapSnowballCount; layer = 14; scale_x = 0.5; scale_y = 0.5; }
-PANEL* panSmallWoodCount = { bmap = bmapWoodCount; layer = 14; scale_x = 0.5; scale_y = 0.5; }
+PANEL* panSmallSnowballCount = { bmap = bmapSnowballCount; layer = 14; scale_x = 0.5; scale_y = 0.5; flags = TRANSLUCENT; }
+PANEL* panSmallWoodCount = { bmap = bmapWoodCount; layer = 14; scale_x = 0.5; scale_y = 0.5; flags = TRANSLUCENT; }
 
 #endif

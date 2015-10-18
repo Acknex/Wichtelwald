@@ -10,10 +10,7 @@ void animatePlayer(var _distAhead) {
 	if (animationFactor != 0)	{
 		my.ANIMATION_PERCENTAGE += 1.2 * animationFactor;
 		ent_animate(me, "walk", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
-	}/* else {
-		my.ANIMATION_PERCENTAGE += 5 * time_step;
-		ent_animate(me,"stand",my.ANIMATION_PERCENTAGE,ANM_CYCLE);
-	}*/
+	}
 }
 
 void actPlayerMove() {
@@ -28,7 +25,7 @@ void actPlayerMove() {
 	VECTOR vecTemp;
 	float cycleRotation = 0;
 	
-	while(1) {
+	while(me) {
 		traceDown = c_trace(my.x, vector(my.x,my.y,my.z-500), IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX );
 		
 		vec_set(vecTemp, vector((key_w - key_s), (key_a - key_d), 0.0));
@@ -43,6 +40,21 @@ void actPlayerMove() {
 		cameraTopPlayer();
 		wait(1);
 	}
+}
+
+void actPlayerShoot() {
+	player = me;
+	vec_set(my.x, vector(entHut.x, entHut.y, entHut.z + 30));
+	
+	set(me, INVISIBLE);
+	
+	while(me) {
+		my.pan +=mouse_force.x * time_step;
+		my.tilt += mouse_force.y * time_step;
+		clamp(my.tilt, 50, -50);
+		wait(1);
+	}
+	
 }
 
 void actBall() {

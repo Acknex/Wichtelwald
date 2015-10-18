@@ -58,6 +58,16 @@ void item_loop()
 		}
 		my->z = vZ + 10 * sinv(total_ticks * 20 + vOffset);
 		my->pan -= 5 * time_step;
+		if (dayOrNight == DAY)
+		{
+			reset(my, INVISIBLE);
+			my->emask |= ENABLE_TRIGGER; 
+		}
+		else
+		{
+			set(my, INVISIBLE);
+			my->emask &= ~ENABLE_TRIGGER; 
+		}
 		wait(1);
 	}
 	item_fade();

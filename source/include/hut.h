@@ -7,4 +7,6 @@
 var hutSnowballCount = 0;
 var hutWoodCount = 0;
 
+ENTITY* entHut = NULL;
+
 #endif
