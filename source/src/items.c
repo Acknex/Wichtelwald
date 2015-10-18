@@ -12,12 +12,16 @@ int maxWoodCount = 3;
 int snowballCount = 0;
 int maxSnowballCount = 20;
 
+var itemSpawnDelay = 10;
+var itemSpawnTimer = 0;
+
 void item_loop();
 void item_fade();
 void item_wood_evt();
 void item_snowball_evt();
 void item_particleFader(PARTICLE *p);
 void item_particle (PARTICLE *p);
+void item_spawn();
 
 action item_wood()
 {
@@ -151,6 +155,46 @@ void item_particle (PARTICLE *p)
 	p->event = item_particleFader;
 }
 
+
+void item_spawn_loop()
+{
+	if(dayOrNight == DAY)
+	{
+		if(itemSpawnTimer > itemSpawnDelay)
+		{
+			item_spawn();
+			itemSpawnTimer -= itemSpawnDelay;
+		}
+		else
+		{
+			itemSpawnTimer += time_step;
+		}
+	}
+}
+
+void item_spawn()
+{
+	VECTOR tempVector;
+	vec_set(tempVector, vector(random(6400)-3200, random(6400)-3200, 0));
+	if(vec_length(tempVector) < 400)
+	{
+		return;
+	}
+	
+	tempVector.z = 5000;
+	tempVector.z -= c_trace(tempVector, vector(tempVector.x, tempVector.y, -5000), SCAN_TEXTURE|IGNORE_PASSABLE) - ITEM_HEIGHT;
+	if(hit.nz < 0.5)
+	{
+		return;
+	}
+	
+	ENTITY *item;
+	if(random(1.0) > 0.95)
+		item = ent_create("models//woodthing.mdl", tempVector, item_wood);
+	else
+		item = ent_create("models//snowball.mdl", tempVector, item_snowball);
+	item.pan = random(360);
+}
 
 
 #endif

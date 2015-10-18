@@ -4,4 +4,6 @@
 #define is_collected  FLAG4
 #define ITEM_HEIGHT 40
 
+void item_spawn_loop();
+
 #endif

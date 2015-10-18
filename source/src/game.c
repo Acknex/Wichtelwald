@@ -44,18 +44,14 @@ void startGame()
 	}
 	
 	random_seed(0);
-	// pssm_run(4);
-
-	while(!player)
-	{
-		wait(1);
-	}
+	pssm_run(4);
 
 	var sunlightFactor = 0;
 	while(1)
 	{
 		updateGui();
 		goblin_loop();
+		item_spawn_loop();
 		
 		dayTime += DAY_TIME_SPEED * time_step;
 		if(dayTime >= 86400)
@@ -117,7 +113,7 @@ void startGame()
 
 void backToMenu() {	
 	endIngameGUI();
-	level_load("maps//menuLevel.wmb");
+	level_load("maps//menuLevel2.wmb");
 	startMenu();
 }
 
@@ -148,6 +144,11 @@ void gameOver() {
 
 void startDay()
 {
+	if(!player)
+	{
+		return;
+	}
+	
 	dayOrNight = DAY;
 	snd_play(sndDayStart, soundVolume, 0);
 	on_space = NULL;
@@ -161,6 +162,11 @@ void startDay()
 
 void startNight()
 {
+	if(!player)
+	{
+		return;
+	}
+	
 	dayOrNight = NIGHT;
 	snd_play(sndNightStart, soundVolume, 0);
 	mouse_mode = 1;

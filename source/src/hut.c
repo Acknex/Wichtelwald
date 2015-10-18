@@ -202,10 +202,14 @@ action hut_light()
 	
 	while(1)
 	{
-		if (dayOrNight == NIGHT)
+		if (dayOrNight == NIGHT && !isGameOver)
 		{
 			my->red = fireColor.red + random(20) - 10;
 			my->lightrange = random(200) + 400;
+		}
+		else
+		{
+			my->lightrange = 0;
 		}
 		wait (-0.1 - random(0.2));
 	}

@@ -1,8 +1,8 @@
 #ifndef GOBLIN_C
 #define GOBLIN_C
 
-var goblinSpawnDelay = 16;
-var goblinSpeed = 10;
+var goblinSpawnDelay = 16*3;
+var goblinSpeed = 5;
 
 var goblinSpawnDist = 1000;
 var goblinSpawnTimer = 0;
@@ -18,7 +18,7 @@ void goblin_hat();
 void goblin_loop()
 {
 
-	//if (dayOrNight == NIGHT)
+	if (dayOrNight == NIGHT)
 	{
 		if (goblinSpawnTimer > goblinSpawnDelay)
 		{
@@ -57,6 +57,7 @@ void goblin()
 {
 	c_setminmax(me);
 	my->trigger_range = 40;
+	set(my, SHADOW);
 	my->emask |= ENABLE_TRIGGER | ENABLE_IMPACT;
 	my->event = goblin_event;
 	my->ENTITY_TYPE = GOBLIN;
@@ -86,7 +87,7 @@ void goblin()
 
 	if (!is(my, is_collided) && is(my, is_dead))
 	{
-		ent_create("hat.mdl", my->x, goblin_hat);
+		ent_create("hat.mdl", vector(my->x, my->y, my->z+10.0), goblin_hat);
 	}
 
 	ptr_remove(me);
