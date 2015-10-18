@@ -105,8 +105,6 @@ function pssm_run(var numsplits)
 	viewShadow->bmap = bmap_createblack(screen_size.x, screen_size.y, 32);
 	render_stencil = viewShadow->bmap;
 	
-	set(mtl_model, PASS_SOLID);
-	
 	// create the depth materials and views
 	VIEW* viewSplit[4];
 	var i;

@@ -18,7 +18,7 @@ void gameCameraInit() {
 	//set(camera, ISOMETRIC);
 	camera.tilt = 310;
 	
-	camera.clip_near = 0.1;
+	camera.clip_near = 1;
 	camera.clip_far = 5000;
 }
 

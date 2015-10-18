@@ -62,7 +62,7 @@ void goblin()
 	my->ENTITY_TYPE = GOBLIN;
 	my->ATTACK_POWER = 1;
 	ent_playloop(me, sndGobboRun, soundVolume * 10);
-	while (dayOrNight == NIGHT && (!is(my, is_dead)))
+	while (dayOrNight == NIGHT && isGameOver == 0 &&(!is(my, is_dead)))
 	{
 		wait (1);
 		if (c_trace(&my->x, vector(my->x, my->y, my->z - 1000), IGNORE_ME | IGNORE_PASSABLE | IGNORE_PASSENTS) > 0)
