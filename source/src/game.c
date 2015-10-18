@@ -3,6 +3,7 @@
 
 void startGame()
 {
+	reset_hints();
 	endMenu();
 	level_load("maps//mainLevel.wmb");
 	on_esc = NULL;
@@ -17,6 +18,7 @@ void startGame()
 	
 	hut_restart();
 	item_restart();
+	show_dayhint();
 
 	set(mtl_model, PASS_SOLID);
 	random_seed(8);
@@ -163,6 +165,7 @@ void startDay()
 	ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
 	stopMusicGame();
 	playMusicGameDay();
+	show_dayhint();
 }
 
 void startNight()
@@ -181,6 +184,7 @@ void startNight()
 	on_mouse_left = throwSnowball;
 	stopMusicGame();
 	playMusicGameNight();
+	show_nighthint();
 }
 
 void fadeWithBlack(void *block)
