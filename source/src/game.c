@@ -47,6 +47,7 @@ void startGame()
 	while(1)
 	{
 		updateGui();
+		goblin_loop();
 		
 		dayTime += DAY_TIME_SPEED;
 		if(dayTime >= 86400)
