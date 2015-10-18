@@ -3,7 +3,7 @@
 
 #define WALK_SPEED 10
 #define RUN_SPEED 10
-#define PLAYER_HEIGHT 6
+#define PLAYER_HEIGHT 3
 
 #define ANIMATION_PERCENTAGE skill1
 
