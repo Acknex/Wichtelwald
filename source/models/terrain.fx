@@ -3,6 +3,8 @@ float4x4 matWorldViewProj;
 float4 vecSunDir;
 float4 vecAmbient;
 float4 vecSunColor;
+float4 vecLightPos[8];
+float4 vecLightColor[8];
 
 texture entSkin1;
 texture entSkin2;
@@ -57,7 +59,9 @@ float4 PS(VS_OUTPUT input) : COLOR
 	color.xyz = colorYZ*blendNormal.xxx + colorZX*blendNormal.yyy + colorXY*blendNormal.zzz;
 	color.a = 1.0f;
 	
-	float3 light = float3(0.5f, 0.5f, 0.5f) + vecSunColor.rgb*abs(dot(normalize(input.normal), vecSunDir.xyz))*0.5f;
+	float light1Attenuation = (vecLightPos[0].w > 10000.0f)? 0.0f : saturate(1.0f-distance(input.worldPosition, vecLightPos[0])/vecLightPos[0].w);
+	
+	float3 light = float3(0.5f, 0.5f, 0.5f) + vecSunColor.rgb*abs(dot(normalize(input.normal), vecSunDir.xyz))*0.5f + vecLightColor[0].rgb*light1Attenuation;
 	color.rgb *= light;
 	
 	return color;

@@ -15,8 +15,7 @@ void startGame()
 	dayOrNight = DAY;
 	dayTime = 28800;
 	
-	sun_light = 20;
-	
+	set(mtl_model, PASS_SOLID);
 	random_seed(8);
 	
 	VECTOR tempVector;
@@ -44,34 +43,50 @@ void startGame()
 		tree.pan = random(360);
 	}
 	
+	random_seed(0);
 	pssm_run(4);
 
+	while(!player)
+	{
+		wait(1);
+	}
+
 	var sunlightFactor = 0;
-	
 	while(1)
 	{
 		updateGui();
 		goblin_loop();
 		
-		dayTime += DAY_TIME_SPEED;
+		dayTime += DAY_TIME_SPEED * time_step;
 		if(dayTime >= 86400)
 		{
-			dayTime = 0;
+			dayTime -= 86400;
 		}
 		
-		hours = dayTime/60/60;
-		minutes = (dayTime-hours*60*60)/60;
+		hours = integer(dayTime)/60/60;
+		minutes = (integer(dayTime)-hours*60*60)/60;
 		
 		sunlightFactor = sinv((dayTime-28800.0)/(60.0*60.0*12.0)*180.0);
+		
+		// Day start
+		if(dayTime >= 28800 && dayOrNight == NIGHT && dayTime < 72000)
+		{
+			dayOrNight = DAY;
+			snd_play(sndDayStart, soundVolume, 0);
+			on_space = NULL;
+			ent_remove(player);
+			mouse_mode = 0;
+			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
+		}
 		
 		// Day
 		if(sunlightFactor > 0.0)
 		{
-			sun_light = sunlightFactor*100;
+			sun_light = sunlightFactor*60;
 		}
 		
 		// Night start
-		if(dayTime == 72000)
+		if(dayTime >= 72000 && dayOrNight == DAY)
 		{
 			dayOrNight = NIGHT;
 			snd_play(sndNightStart, soundVolume, 0);
@@ -85,17 +100,6 @@ void startGame()
 		if(sunlightFactor <= 0.0)
 		{
 			sun_light = -sunlightFactor*30;
-		}
-		
-		// Day start
-		if (dayTime == 28800)
-		{
-			dayOrNight = DAY;
-			snd_play(sndDayStart, soundVolume, 0);
-			on_space = NULL;
-			ent_remove(player);
-			mouse_mode = 0;
-			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
 		}
 		
 		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;
