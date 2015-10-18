@@ -12,7 +12,7 @@ void startGame()
 	startSnow();
 	
 	// Start a new day
-	var dayOrNight = DAY;
+	dayOrNight = DAY;
 	dayTime = 28800;
 	
 	sun_light = 20;

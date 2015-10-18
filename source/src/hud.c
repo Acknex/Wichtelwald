@@ -69,25 +69,21 @@ void endIngameGUI() {
 }
 
 void updateGui() {
-	str_for_num((txtWoodCount.pstring)[0], woodCount);
-	str_cat((txtWoodCount.pstring)[0], "/");
-	str_cat((txtWoodCount.pstring)[0], str_for_num(NULL, maxWoodCount));
 	
-	str_for_num((txtSnowballCount.pstring)[0], snowballCount);
-	str_cat((txtSnowballCount.pstring)[0], "/");
-	str_cat((txtSnowballCount.pstring)[0], str_for_num(NULL, maxSnowballCount));
-	
-	str_for_num((txtHutSnowballCount.pstring)[0], hutSnowballCount);
-	str_for_num((txtHutWoodCount.pstring)[0], hutWoodCount);
-	
-	if (key_l) {
-		while(key_l) wait(1);
-		showHutItems();
-	}
-	
-	if (key_k) {
-		while(key_k) wait(1);
-		hideHutItems();
+	if (dayOrNight == DAY) {
+		str_for_num((txtWoodCount.pstring)[0], woodCount);
+		str_cat((txtWoodCount.pstring)[0], "/");
+		str_cat((txtWoodCount.pstring)[0], str_for_num(NULL, maxWoodCount));
+		
+		str_for_num((txtSnowballCount.pstring)[0], snowballCount);
+		str_cat((txtSnowballCount.pstring)[0], "/");
+		str_cat((txtSnowballCount.pstring)[0], str_for_num(NULL, maxSnowballCount));
+		
+		str_for_num((txtHutSnowballCount.pstring)[0], hutSnowballCount);
+		str_for_num((txtHutWoodCount.pstring)[0], hutWoodCount);
+	} else {
+		str_for_num((txtWoodCount.pstring)[0], hutWoodCount);
+		str_for_num((txtSnowballCount.pstring)[0], hutSnowballCount);
 	}
 }
 
