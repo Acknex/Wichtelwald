@@ -4,6 +4,7 @@
 #define WALK_SPEED 20
 #define RUN_SPEED 10
 #define PLAYER_HEIGHT 3
+#define did_hit FLAG4
 
 #define ANIMATION_PERCENTAGE skill1
 

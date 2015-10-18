@@ -1,5 +1,10 @@
 #ifndef PLAYER_C_
 #define PLAYER_C_
+#include <particles.c>
+
+void ball_event();
+void ball_fade_p(PARTICLE* p);
+void p_ball_explode(PARTICLE* p);
 
 void animatePlayer(var _distAhead) {
 	if(_distAhead < 0.0)
@@ -8,7 +13,7 @@ void animatePlayer(var _distAhead) {
 	animationFactor = abs(_distAhead);
 	
 	if (animationFactor != 0)	{
-		my.ANIMATION_PERCENTAGE += 1.2 * animationFactor;
+		my.ANIMATION_PERCENTAGE += 1.0 * animationFactor;
 		ent_animate(me, "walk", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
 	}
 }
@@ -31,7 +36,7 @@ void actPlayerMove() {
 		traceDown = c_trace(my.x, vector(my.x,my.y,my.z-500), IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX );
 		
 		vec_set(vecTemp, vector((key_w - key_s), (key_a - key_d), 0.0));
-		vec_normalize(vecTemp, (WALK_SPEED+key_shiftl*RUN_SPEED)*time_step);
+		vec_normalize(vecTemp, (WALK_SPEED/*+key_shiftl*RUN_SPEED*/)*time_step);
 		vec_to_angle(vecPlayerRotation, vecTemp);
 		vec_set(vecPlayerMoveSpeed, vector(vecTemp.x, vecTemp.y, -(traceDown - PLAYER_HEIGHT)));
 		
@@ -66,27 +71,63 @@ void actPlayerShoot() {
 void actBall() {
 	my->ENTITY_TYPE = SHOT;
 	my->trigger_range = 40;
+	my->emask |= ENABLE_ENTITY;
+	my->event = ball_event;
 	
 	VECTOR vBallForce;
 	vec_for_angle(vBallForce.x, vector(camera.pan, camera.tilt + 3, camera.roll));
 	vec_scale(vBallForce.x, 24);
 	
-	int counter = 1000;
+	int counter = 100;
 	
 	while(counter > 0) {
 		c_move(me, vBallForce.x, nullvector, ACTIVATE_TRIGGER | IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX);
 		counter -=1 * time_step;
+		if(is(my, did_hit))
+		{
+			counter = 0;
+		}
 		wait(1);
 	}
 		
 	set(my, PASSABLE);
 	while(my.scale_x > 0) {
-		my.scale_x -=0.1;
-		my.scale_y -=0.1;
-		my.scale_z -=0.1;
-		wait(7);
+		wait(1);
+		my.scale_x -=0.1 * time_step;
+		my.scale_y -=0.1 * time_step;
+		my.scale_z -=0.1 * time_step;
 	}
 	ptr_remove(me);
+}
+
+void ball_fade_p(PARTICLE* p)
+{
+	p.alpha -= p.skill_a*time_step;
+	if (p.alpha <= 0) p.lifespan = 0;
+	
+	p.size = p.size+time_step*5;
+}
+
+void p_ball_explode(PARTICLE* p)
+{
+	VECTOR vTemp;
+	vec_randomize(vTemp,40);
+	vec_add(p.vel_x,vTemp);
+	vec_set(p.blue,vector(240,240, 240));
+	set(p, MOVE | BRIGHT | TRANSLUCENT);
+	p.alpha = 100;
+	p.size = 20;
+	p.skill_a = 5;
+	p.event = ball_fade_p;
+}
+
+void ball_event()
+{
+	if(event_type == EVENT_ENTITY && you != NULL)
+	{
+		set(my, did_hit);	
+		effect(p_ball_explode, 40, my->x, nullvector);
+	}
 }
 
 void throwSnowball() {

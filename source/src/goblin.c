@@ -4,7 +4,7 @@
 var goblinSpawnDelay = 16*3;
 var goblinSpeed = 5;
 
-var goblinSpawnDist = 1000;
+var goblinSpawnDist = 1300;
 var goblinSpawnTimer = 0;
 var goblinLastSpawnAngle = 0;
 
@@ -66,7 +66,6 @@ void goblin()
 	ent_playloop(me, sndGobboRun, soundVolume * 10);
 	while (dayOrNight == NIGHT && isGameOver == 0 &&(!is(my, is_dead)))
 	{
-		wait (1);
 		if (c_trace(&my->x, vector(my->x, my->y, my->z - 1000), IGNORE_ME | IGNORE_PASSABLE | IGNORE_PASSENTS) > 0)
 		{
 			my->z = hit->z - my->min_z + 2;
@@ -74,6 +73,7 @@ void goblin()
 		c_move(me,vector(goblinSpeed * time_step,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER);
 		my->gobboDist += goblinSpeed * time_step;
 		ent_animate(me, "walk", (my->gobboDist % 100) * 1, ANM_CYCLE);
+		wait (1);
 	}
 	my->alpha = 100;
 	set(my, TRANSLUCENT);
