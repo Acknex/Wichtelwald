@@ -17,7 +17,7 @@
 //#define DEBUG_PSSM	// comment this in for displaying the shadowmaps
 
 // PSSM global variables /////////////////////////////////////////
-var pssm_res = 512;			// shadow map resolution
+var pssm_res = 1024;			// shadow map resolution
 var pssm_numsplits = 4;		// number of splits: 3 for small, 4 for large levels
 var pssm_splitweight = 0.75; 	// logarithmic / uniform ratio
 var pssm_splitdist[5];				// split distances
@@ -88,6 +88,8 @@ function pssm_run(var numsplits)
 	// calculate a minimum sun distance for placing the sun slightly outside the level
 	sun_angle.roll = 1.1*maxv(vec_length(level_ent->max_x), vec_length(level_ent->min_x));
 	
+	shadow_threshold = 0;
+	
 	// create the shadow material and view	
 	MATERIAL* mtlShadow = mtl_create();
 	mtlShadow->flags |= PASS_SOLID;
@@ -133,6 +135,8 @@ function pssm_run(var numsplits)
 		// set up the split distances and the shadow view
 		pssm_split(camera, pssm_numsplits, pssm_splitweight);
 		pssm_viewcpy(camera, viewShadow);
+		
+		pssm_transparency = sun_light/100.0*0.6;
 		
 		// set up the split view transformation matrices
 		D3DXMATRIX matSplit[4]; 
