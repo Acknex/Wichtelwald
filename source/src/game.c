@@ -25,7 +25,7 @@ void startGame()
 	
 	VECTOR tempVector;
 	int i;
-	for(i = 0; i < 150; i++)
+	for(i = 0; i < 100; i++)
 	{
 		vec_set(tempVector, vector(random(6400)-3200, random(6400)-3200, 0));
 		if(vec_length(tempVector) < 800)
