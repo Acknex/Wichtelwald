@@ -6,6 +6,8 @@ void ball_event();
 void ball_fade_p(PARTICLE* p);
 void p_ball_explode(PARTICLE* p);
 
+SOUND* sndSnowballHit = "snowball_hit.OGG";
+
 void animatePlayer(var _distAhead) {
 	if(_distAhead < 0.0)
 		return;
@@ -105,20 +107,23 @@ void ball_fade_p(PARTICLE* p)
 	p.alpha -= p.skill_a*time_step;
 	if (p.alpha <= 0) p.lifespan = 0;
 	
-	p.size = p.size+time_step*5;
+	p.size = minv(p.skill_b, p.size+time_step*5);
 }
 
 void p_ball_explode(PARTICLE* p)
 {
 	VECTOR vTemp;
 	vec_randomize(vTemp,40);
+	vec_normalize(vTemp,5);
 	vec_add(p.vel_x,vTemp);
 	vec_set(p.blue,vector(240,240, 240));
 	set(p, MOVE | BRIGHT | TRANSLUCENT);
-	p.alpha = 100;
-	p.size = 20;
-	p.skill_a = 5;
+	p.alpha = 80;
+	p.size = 10;
+	p.skill_a = 10;
 	p.event = ball_fade_p;
+	p.lifespan = 1200+random(600);
+	p.skill_b = 10 + random(7);
 }
 
 void ball_event()
@@ -127,6 +132,7 @@ void ball_event()
 	{
 		set(my, did_hit);	
 		effect(p_ball_explode, 40, my->x, nullvector);
+		snd_play(sndSnowballHit, soundVolume, 0);
 	}
 }
 
