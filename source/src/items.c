@@ -50,16 +50,16 @@ void item_loop()
 	
 	while(!is(me, is_collected))
 	{
-		vParticles += time_step;
-		while (vParticles > 1)
-		{
-			effect(item_particle, 1, &my->x, nullvector);
-			vParticles -= 1;
-		}
-		my->z = vZ + 10 * sinv(total_ticks * 20 + vOffset);
-		my->pan -= 5 * time_step;
 		if (dayOrNight == DAY)
 		{
+			vParticles += time_step;
+			while (vParticles > 1)
+			{
+				effect(item_particle, 1, &my->x, nullvector);
+				vParticles -= 1;
+			}
+			my->z = vZ + 10 * sinv(total_ticks * 20 + vOffset);
+			my->pan -= 5 * time_step;
 			reset(my, INVISIBLE);
 			my->emask |= ENABLE_TRIGGER; 
 		}
