@@ -103,6 +103,7 @@ void goblin_event()
 			{	
 				set (my, is_dead);
 				//shot by snowball
+				wait(1);
 				ent_remove(you);
 			}
 		}

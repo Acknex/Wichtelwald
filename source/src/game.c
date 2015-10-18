@@ -44,7 +44,7 @@ void startGame()
 	}
 	
 	random_seed(0);
-	pssm_run(4);
+	// pssm_run(4);
 
 	while(!player)
 	{
@@ -151,6 +151,7 @@ void startDay()
 	dayOrNight = DAY;
 	snd_play(sndDayStart, soundVolume, 0);
 	on_space = NULL;
+	on_mouse_left = NULL;
 	ent_remove(player);
 	mouse_mode = 0;
 	ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
@@ -166,6 +167,7 @@ void startNight()
 	ent_remove(player);
 	ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
 	on_space = throwSnowball;
+	on_mouse_left = throwSnowball;
 	stopMusicGame();
 	playMusicGameNight();
 }
