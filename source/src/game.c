@@ -44,7 +44,7 @@ void startGame()
 		tree.pan = random(360);
 	}
 	
-	// pssm_run(4);
+	pssm_run(4);
 
 	var sunlightFactor = 0;
 	

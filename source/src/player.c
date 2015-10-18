@@ -55,7 +55,7 @@ void actPlayerShoot() {
 		camera.pan -=mouse_force.x;
 		camera.tilt += mouse_force.y;
 		if (camera.tilt > 20) camera.tilt = 20;
-		if (camera.tilt < -10) camera.tilt = -10;
+		if (camera.tilt < -35) camera.tilt = -35;
 		mouse_pos.x = screen_size.x / 2;
 		mouse_pos.y = screen_size.y / 2;
 		wait(1);
