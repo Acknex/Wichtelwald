@@ -52,8 +52,8 @@ void actPlayerShoot() {
 	mouse_map = bmapCrosshair;
 	
 	while(me) {
-		camera.pan -=mouse_force.x;
-		camera.tilt += mouse_force.y;
+		camera.pan -= mouse_force.x*4.0;
+		camera.tilt += mouse_force.y*4.0;
 		if (camera.tilt > 20) camera.tilt = 20;
 		if (camera.tilt < -35) camera.tilt = -35;
 		mouse_pos.x = screen_size.x / 2;
