@@ -27,7 +27,7 @@ void sysInit() {
 
 void cleanUpGame() {
 	RemoveFontResource("fonts//Boogaloo-Regular.otf");
-	exitFunction();
+	//exitFunction();
 }
 
 void exitGame() {

@@ -1,0 +1,1 @@
+@call d:\acknex8\acknex.exe main.c
