@@ -54,6 +54,7 @@ void goblin_spawn()
 
 void goblin()
 {
+	c_setminmax(me);
 	my->emask |= ENABLE_ENTITY | ENABLE_IMPACT;
 	my->event = goblin_event;
 	my->ENTITY_TYPE = GOBLIN;
@@ -63,9 +64,11 @@ void goblin()
 		wait (1);
 		if (c_trace(&my->x, vector(my->x, my->y, my->z - 1000), IGNORE_ME | IGNORE_PASSABLE | IGNORE_PASSENTS) > 0)
 		{
-			my->z = hit->z - my->min_z + 20;
+			my->z = hit->z - my->min_z + 2;
 		}
-		c_move(me,vector(goblinSpeed,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE);
+		c_move(me,vector(goblinSpeed * time_step,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE);
+		my->gobboDist += goblinSpeed * time_step;
+		ent_animate(me, "walk", (my->gobboDist % 100) * 1, ANM_CYCLE);
 	}
 
 	ptr_remove(me);
@@ -79,6 +82,7 @@ void goblin_event()
 		{
 			if (your->ENTITY_TYPE == HUT)
 			{
+				ptr_remove(me);
 			}
 		}
 	}
