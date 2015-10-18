@@ -1,5 +1,4 @@
 #include <acknex.h>
-#include <ackphysx.h>
 
 #define DEBUG
 #ifdef DEBUG
@@ -7,7 +6,7 @@
 #endif
 
 #define PRAGMA_LEVEL "maps\\mainLevel.wmp"
-#define PRAGMA_LEVEL "maps\\menuLevel.wmp"
+#define PRAGMA_LEVEL "maps\\menuLevel2.wmp"
 
 #define PRAGMA_PATH "src";
 #define PRAGMA_PATH "include";
@@ -17,6 +16,8 @@
 #define PRAGMA_PATH "fonts";
 #define PRAGMA_PATH "sounds";
 #define PRAGMA_PATH "music";
+#define PRAGMA_PATH "maps";
+#define PRAGMA_PATH "graphics";
 
 #include "shadows.c"
 #include "menu.h"
@@ -51,6 +52,6 @@
 
 void main() {
 	sysInit();
-	level_load("maps//menuLevel2.wmb");
+	level_load("menuLevel2.wmb");
 	startMenu();
 }
