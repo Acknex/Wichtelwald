@@ -11,6 +11,7 @@ var dayOrNight = DAY;
 int dayTime = 28800; // 1000 = 1 hour
 var hours = 12;
 var minutes = 0;
+var isGameOver = 0;
 
 
 void backToMenu();

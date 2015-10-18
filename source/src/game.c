@@ -134,6 +134,7 @@ void backToMenu() {
 }
 
 void gameOver() {
+	isGameOver = 1;
 	endIngameGUI();
 	ent_remove(player);
 	panGameOver.pos_x = screen_size.x / 2 - bmap_width(bmapGameOver) / 2;
@@ -153,6 +154,7 @@ void gameOver() {
 	}
 	
 	reset(panGameOver, SHOW);
+	isGameOver = 0;
 	backToMenu();
 }
 
