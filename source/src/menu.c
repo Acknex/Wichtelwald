@@ -3,6 +3,8 @@
 
 void startMenu() {
 	
+	on_esc = exitGame;
+	
 	if (panTitle == NULL) {
 		panTitle = pan_create("", 10);
 		panTitle.bmap = bmapTitle;

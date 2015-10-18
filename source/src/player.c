@@ -55,11 +55,9 @@ void actPlayerShoot() {
 		camera.pan -=mouse_force.x;
 		camera.tilt += mouse_force.y;
 		if (camera.tilt > 20) camera.tilt = 20;
-		if (camera.tilt < -20) camera.tilt = -20;
+		if (camera.tilt < -10) camera.tilt = -10;
 		mouse_pos.x = screen_size.x / 2;
 		mouse_pos.y = screen_size.y / 2;
-		
-		draw_text(str_for_num(NULL, my.tilt), 10, 10, COLOR_RED);
 		wait(1);
 	}
 	
@@ -80,23 +78,28 @@ void actBall() {
 void throwSnowball() {
 	if (player == NULL) return;
 	
-	VECTOR vecSpawnPoint;
-	vec_set(vecSpawnPoint, vector(30,0,10));
-	vec_rotate(vecSpawnPoint, player.pan);
-	vec_add(vecSpawnPoint, player.x);
+	if (hutSnowballCount > 0) {
 	
-	
-	ENTITY* entBall = ent_create ("models//snowball.mdl", vecSpawnPoint, actBall);
-	VECTOR vBallForce;
-	vec_for_angle(vBallForce.x, vector(player.pan, player.tilt + 3, player.roll));
-	vec_scale(vBallForce.x, 24);
-	pXent_settype (entBall, PH_RIGID, PH_SPHERE);
-	pXent_addforcelocal (entBall, vBallForce, entBall.x);
-	
-	int sound = 1 + integer(random(2));
-	switch(sound) {
-		case 1: snd_play(sndThrow1, 100, 0); break;
-		case 2: snd_play(sndThrow2, 100, 0); break;
+		VECTOR vecSpawnPoint;
+		vec_set(vecSpawnPoint, vector(30,0,0));
+		vec_rotate(vecSpawnPoint, camera.pan);
+		vec_add(vecSpawnPoint, camera.x);
+		
+		
+		ENTITY* entBall = ent_create ("models//snowball.mdl", vecSpawnPoint, actBall);
+		VECTOR vBallForce;
+		vec_for_angle(vBallForce.x, vector(camera.pan, camera.tilt + 3, camera.roll));
+		vec_scale(vBallForce.x, 24);
+		pXent_settype (entBall, PH_RIGID, PH_SPHERE);
+		pXent_addforcelocal (entBall, vBallForce, entBall.x);
+		
+		int sound = 1 + integer(random(2));
+		switch(sound) {
+			case 1: snd_play(sndThrow1, 100, 0); break;
+			case 2: snd_play(sndThrow2, 100, 0); break;
+		}
+		
+		hutSnowballCount--;
 	}
 }
 

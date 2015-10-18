@@ -5,10 +5,15 @@ void startGame()
 {
 	endMenu();
 	level_load("maps//mainLevel.wmb");
+	on_esc = NULL;
 	gameCameraInit();
 	startIngameGUI();
 	playMusicGameDay();
 	startSnow();
+	
+	// Start a new day
+	var dayOrNight = DAY;
+	dayTime = 28800;
 	
 	sun_light = 20;
 	
@@ -73,6 +78,7 @@ void startGame()
 			mouse_mode = 1;
 			ent_remove(player);
 			ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
+			on_space = throwSnowball;
 		}
 		
 		// Night
@@ -86,6 +92,7 @@ void startGame()
 		{
 			dayOrNight = DAY;
 			snd_play(sndDayStart, soundVolume, 0);
+			on_space = NULL;
 			ent_remove(player);
 			mouse_mode = 0;
 			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
@@ -98,8 +105,20 @@ void startGame()
 		d3d_fogcolor1.green = sun_light*255.0/100.0;
 		d3d_fogcolor1.blue = sun_light*255.0/100.0;
 		
+		if (key_esc) {
+			while(key_esc) wait(1);
+			break;
+		}
 		wait(1);
 	}
+	
+	backToMenu();
+}
+
+void backToMenu() {
+	endIngameGUI();
+	level_load("maps//menuLevel.wmb");
+	startMenu();
 }
 
 #endif
