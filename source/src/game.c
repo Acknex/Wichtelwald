@@ -39,7 +39,7 @@ void startGame()
 		tree.pan = random(360);
 	}
 	
-	pssm_run(4);
+	// pssm_run(4);
 
 	var sunlightFactor = 0;
 	
@@ -70,8 +70,9 @@ void startGame()
 		{
 			dayOrNight = NIGHT;
 			snd_play(sndNightStart, soundVolume, 0);
+			mouse_mode = 1;
 			ent_remove(player);
-			ent_create("player.mdl", nullvector, actPlayerShoot);
+			ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
 		}
 		
 		// Night
@@ -86,7 +87,8 @@ void startGame()
 			dayOrNight = DAY;
 			snd_play(sndDayStart, soundVolume, 0);
 			ent_remove(player);
-			ent_create("player.mdl", nullvector, actPlayerMove);
+			mouse_mode = 0;
+			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
 		}
 		
 		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;

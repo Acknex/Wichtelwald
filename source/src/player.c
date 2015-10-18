@@ -23,6 +23,8 @@ void actPlayerMove() {
 	player = me;
 	my->trigger_range = 40;
 	c_setminmax(me);
+	camera.tilt = 310;
+	camera.pan = 0;
 	
 	float traceDown = 0;
 	VECTOR vecPlayerMoveSpeed;
@@ -50,14 +52,20 @@ void actPlayerMove() {
 
 void actPlayerShoot() {
 	player = me;
-	vec_set(my.x, vector(entHut.x, entHut.y, entHut.z + 30));
 	
 	set(me, INVISIBLE);
+	cameraShooter();
+	mouse_map = bmapCrosshair;
 	
 	while(me) {
-		my.pan +=mouse_force.x * time_step;
-		my.tilt += mouse_force.y * time_step;
-		clamp(my.tilt, 50, -50);
+		camera.pan -=mouse_force.x;
+		camera.tilt += mouse_force.y;
+		if (camera.tilt > 20) camera.tilt = 20;
+		if (camera.tilt < -20) camera.tilt = -20;
+		mouse_pos.x = screen_size.x / 2;
+		mouse_pos.y = screen_size.y / 2;
+		
+		draw_text(str_for_num(NULL, my.tilt), 10, 10, COLOR_RED);
 		wait(1);
 	}
 	

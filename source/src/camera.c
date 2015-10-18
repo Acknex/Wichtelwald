@@ -4,7 +4,7 @@
 // Rotates the camera around the "me" target
 void actCameraRotateMenu() {
 	vec_set(vecCamTmp, my.x);
-	while(1) {
+	while(me) {
 		cam_angle +=0.005 * time_step;
 		camera.x = cos(cam_angle) * 768;
 		camera.y = sin(cam_angle) * 768;
@@ -30,6 +30,13 @@ void cameraTopPlayer() {
 	camera.x = player.x - 400;
 	camera.y = player.y - 20;
 	camera.z = player.z + 500;
+}
+
+void cameraShooter() {
+	camera.x = player.x;
+	camera.y = player.y;
+	camera.z = player.z;
+	camera.tilt = 0;
 }
 
 #endif
