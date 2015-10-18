@@ -86,6 +86,10 @@ void startGame()
 		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;
 		sun_angle.tilt = abs(ang(asinv(sunlightFactor)))*70.0/180.0+10.0;
 		
+		d3d_fogcolor1.red = sun_light*255.0/100.0;
+		d3d_fogcolor1.green = sun_light*255.0/100.0;
+		d3d_fogcolor1.blue = sun_light*255.0/100.0;
+		
 		wait(1);
 	}
 }
