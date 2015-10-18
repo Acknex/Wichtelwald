@@ -23,19 +23,19 @@ void startIngameGUI() {
 	
 	panHut.pos_x = screen_size.x / 2 - bmap_width(bmapHut) / 2;
 	panHut.pos_y = screen_size.y / 2 - bmap_height(bmapHut) / 2;
-	txtHutWoodCount = txt_create(1, 13);
+	txtHutWoodCount = txt_create(1, 15);
 	txtHutWoodCount.font = fontBoogalooSmall;
-	txtHutWoodCount.pos_x = panHut.pos_x;
+	txtHutWoodCount.pos_x = panHut.pos_x - 5;
 	txtHutWoodCount.pos_y = panHut.pos_y + bmap_height(bmapHut) - 10;
 	vec_set(txtHutWoodCount.blue, vector(43,221,255));
-	set(txtHutWoodCount,OUTLINE);
-	txtHutSnowballCount = txt_create(1, 13);
+	set(txtHutWoodCount,OUTLINE | TRANSLUCENT);
+	txtHutSnowballCount = txt_create(1, 15);
 	txtHutSnowballCount.font = fontBoogalooSmall;
 	txtHutSnowballCount.pos_x = panHut.pos_x + 60;
 	txtHutSnowballCount.pos_y = panHut.pos_y + bmap_height(bmapHut) - 10;
 	vec_set(txtHutSnowballCount.blue, vector(43,221,255));
-	set(txtHutSnowballCount,OUTLINE);
-	panSmallSnowballCount.pos_x = txtHutSnowballCount.pos_x + 20;
+	set(txtHutSnowballCount,OUTLINE | TRANSLUCENT);
+	panSmallSnowballCount.pos_x = txtHutSnowballCount.pos_x + 25;
 	panSmallSnowballCount.pos_y = txtHutSnowballCount.pos_y;
 	panSmallWoodCount.pos_x = txtHutWoodCount.pos_x + 20;
 	panSmallWoodCount.pos_y = txtHutWoodCount.pos_y;
@@ -77,17 +77,53 @@ void updateGui() {
 	
 	str_for_num((txtHutSnowballCount.pstring)[0], hutSnowballCount);
 	str_for_num((txtHutWoodCount.pstring)[0], hutWoodCount);
+	
+	if (key_l) {
+		while(key_l) wait(1);
+		showHutItems();
+	}
+	
+	if (key_k) {
+		while(key_k) wait(1);
+		hideHutItems();
+	}
 }
 
 void showHutItems() {
+	
+	txtHutSnowballCount.alpha = 0;
+	txtHutWoodCount.alpha = 0;
+	panHut.alpha = 0;
+	panSmallWoodCount.alpha = 0;
+	panSmallSnowballCount.alpha = 0;
+	
 	set(txtHutSnowballCount, SHOW);
 	set(txtHutWoodCount, SHOW);
 	set(panHut, SHOW);
 	set(panSmallWoodCount, SHOW);
 	set(panSmallSnowballCount, SHOW);
+	
+	while(panHut.alpha < 100) {
+		txtHutSnowballCount.alpha += 4 * time_step;
+		txtHutWoodCount.alpha += 4 * time_step;
+		panHut.alpha += 4 * time_step;
+		panSmallWoodCount.alpha += 4 * time_step;
+		panSmallSnowballCount.alpha += 4 * time_step;
+		wait(1);
+	}
 }
 
 void hideHutItems() {
+	
+	while(panHut.alpha > 0) {
+		txtHutSnowballCount.alpha -= 4 * time_step;
+		txtHutWoodCount.alpha -= 4 * time_step;
+		panHut.alpha -= 4 * time_step;
+		panSmallWoodCount.alpha -= 4 * time_step;
+		panSmallSnowballCount.alpha -= 4 * time_step;	
+		wait(1);
+	}
+	
 	reset(txtHutSnowballCount, SHOW);
 	reset(txtHutWoodCount, SHOW);
 	reset(panHut, SHOW);
