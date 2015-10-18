@@ -70,7 +70,7 @@ void goblin()
 		{
 			my->z = hit->z - my->min_z + 2;
 		}
-		c_move(me,vector(goblinSpeed * time_step,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER);
+		c_move(me,vector(goblinSpeed * time_step,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER | IGNORE_FLAG2);
 		my->gobboDist += goblinSpeed * time_step;
 		ent_animate(me, "walk", (my->gobboDist % 100) * 1, ANM_CYCLE);
 		wait (1);
@@ -87,7 +87,14 @@ void goblin()
 		wait (1);
 		my->alpha -= 5* time_step;
 		my->gobboDist += 2 * time_step;
-		ent_animate(me, "victory", (my->gobboDist % 20) * 5, 0);
+		if (!is(my, is_collided) && is(my, is_dead))
+		{
+			ent_animate(me, "shake", (my->gobboDist % 20) * 5, ANM_CYCLE);
+		}
+		else
+		{
+			ent_animate(me, "victory", (my->gobboDist % 20) * 5, ANM_CYCLE);
+		}
 	}
 
 	if (!is(my, is_collided) && is(my, is_dead))
