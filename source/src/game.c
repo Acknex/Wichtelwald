@@ -8,7 +8,6 @@ void startGame()
 	gameCameraInit();
 	startIngameGUI();
 	playMusicGameDay();
-	on_space = throwSnowball;
 	startSnow();
 	
 	sun_light = 20;
@@ -68,7 +67,10 @@ void startGame()
 		// Night start
 		if(dayTime == 72000)
 		{
+			dayOrNight = NIGHT;
 			snd_play(sndNightStart, soundVolume, 0);
+			ent_remove(player);
+			ent_create("player.mdl", nullvector, actPlayerShoot);
 		}
 		
 		// Night
@@ -80,7 +82,10 @@ void startGame()
 		// Day start
 		if (dayTime == 28800)
 		{
+			dayOrNight = DAY;
 			snd_play(sndDayStart, soundVolume, 0);
+			ent_remove(player);
+			ent_create("player.mdl", nullvector, actPlayerMove);
 		}
 		
 		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;

@@ -189,6 +189,7 @@ action woodlog()
 
 action hut()
 {
+	entHut = me;
 	my->trigger_range = 200;
 	my->emask |= ENABLE_TRIGGER | ENABLE_IMPACT;
 	my->event = hut_event;	

@@ -10,6 +10,7 @@
 float animationFactor = 0;
 
 action actPlayerMove();
+action actPlayerShoot();
 void animatePlayer(VECTOR* _distAhead);
 
 action actBall();

@@ -18,25 +18,6 @@ void animatePlayer(VECTOR* _distAhead) {
 	}
 }
 
-void actPlayerMove_2() {
-	
-	player = me;
-	c_setminmax(me);
-	
-	float traceDown = 0;
-	VECTOR vecPlayerMoveSpeed;
-	
-	while(1) {
-		traceDown = c_trace(my.x, vector(my.x,my.y,my.z-500), IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX );
-		vec_set(vecPlayerMoveSpeed, vector((key_w - key_s) * (WALK_SPEED+key_shiftl*RUN_SPEED) * time_step, 0, -(traceDown - PLAYER_HEIGHT)));
-		my.pan += (key_a - key_d) * time_step * 10;
-		c_move(me, vecPlayerMoveSpeed.x, nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE);
-		animatePlayer(vecPlayerMoveSpeed.x);
-		cameraTopPlayer();
-		wait(1);
-	}
-}
-
 void actPlayerMove() {
 	
 	player = me;
@@ -49,7 +30,7 @@ void actPlayerMove() {
 	VECTOR vecTemp;
 	float cycleRotation = 0;
 	
-	while(1) {
+	while(me) {
 		traceDown = c_trace(my.x, vector(my.x,my.y,my.z-500), IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX );
 		
 		vec_set(vecTemp, vector((key_w - key_s), (key_a - key_d), 0.0));
@@ -65,6 +46,21 @@ void actPlayerMove() {
 		cameraTopPlayer();
 		wait(1);
 	}
+}
+
+void actPlayerShoot() {
+	player = me;
+	vec_set(my.x, vector(entHut.x, entHut.y, entHut.z + 30));
+	
+	set(me, INVISIBLE);
+	
+	while(me) {
+		my.pan +=mouse_force.x * time_step;
+		my.tilt += mouse_force.y * time_step;
+		clamp(my.tilt, 50, -50);
+		wait(1);
+	}
+	
 }
 
 void actBall() {
