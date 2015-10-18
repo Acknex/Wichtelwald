@@ -1,40 +1,19 @@
 #ifndef PLAYER_C_
 #define PLAYER_C_
 
-void animatePlayer(VECTOR* _distAhead) {
+void animatePlayer(var _distAhead) {
+	if(_distAhead < 0.0)
+		return;
 	
-	if (abs(_distAhead.x) > abs(_distAhead.y)) {
-		animationFactor = abs(_distAhead.x)*0.32;
-	} else {
-		animationFactor = abs(_distAhead.y)*0.32;
-	}
+	animationFactor = abs(_distAhead);
 	
 	if (animationFactor != 0)	{
-		my.ANIMATION_PERCENTAGE += 60 * time_step * animationFactor;
-		ent_animate(me,"walk",my.ANIMATION_PERCENTAGE,ANM_CYCLE);
-	} else { 
+		my.ANIMATION_PERCENTAGE += 1.2 * animationFactor;
+		ent_animate(me, "walk", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
+	}/* else {
 		my.ANIMATION_PERCENTAGE += 5 * time_step;
 		ent_animate(me,"stand",my.ANIMATION_PERCENTAGE,ANM_CYCLE);
-	}
-}
-
-void actPlayerMove_2() {
-	
-	player = me;
-	c_setminmax(me);
-	
-	float traceDown = 0;
-	VECTOR vecPlayerMoveSpeed;
-	
-	while(1) {
-		traceDown = c_trace(my.x, vector(my.x,my.y,my.z-500), IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX );
-		vec_set(vecPlayerMoveSpeed, vector((key_w - key_s) * (WALK_SPEED+key_shiftl*RUN_SPEED) * time_step, 0, -(traceDown - PLAYER_HEIGHT)));
-		my.pan += (key_a - key_d) * time_step * 10;
-		c_move(me, vecPlayerMoveSpeed.x, nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE);
-		animatePlayer(vecPlayerMoveSpeed.x);
-		cameraTopPlayer();
-		wait(1);
-	}
+	}*/
 }
 
 void actPlayerMove() {
@@ -54,14 +33,13 @@ void actPlayerMove() {
 		
 		vec_set(vecTemp, vector((key_w - key_s), (key_a - key_d), 0.0));
 		vec_normalize(vecTemp, (WALK_SPEED+key_shiftl*RUN_SPEED)*time_step);
+		vec_to_angle(vecPlayerRotation, vecTemp);
 		vec_set(vecPlayerMoveSpeed, vector(vecTemp.x, vecTemp.y, -(traceDown - PLAYER_HEIGHT)));
-		
-		vec_to_angle(vecPlayerRotation, vecPlayerMoveSpeed);
 		
 		player.pan = vecPlayerRotation.x;
 		
-		c_move(me, nullvector, vecPlayerMoveSpeed.x, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER);
-		animatePlayer(vecPlayerMoveSpeed);
+		var dist = c_move(me, nullvector, vecPlayerMoveSpeed.x, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER);
+		animatePlayer(dist);
 		cameraTopPlayer();
 		wait(1);
 	}
