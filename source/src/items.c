@@ -38,6 +38,12 @@ action item_snowball()
 	item_loop();
 }
 
+void item_restart()
+{
+	woodCount = 0;
+	snowballCount = 0;
+}
+
 void item_loop()
 {
 	my->emask |= ENABLE_TRIGGER; 

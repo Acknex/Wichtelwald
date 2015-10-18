@@ -79,6 +79,7 @@ void actBall() {
 		wait(1);
 	}
 		
+	set(my, PASSABLE);
 	while(my.scale_x > 0) {
 		my.scale_x -=0.1;
 		my.scale_y -=0.1;

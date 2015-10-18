@@ -7,6 +7,8 @@
 var hutSnowballCount = 0;
 var hutWoodCount = 0;
 
+void hut_restart();
+
 ENTITY* entHut = NULL;
 
 #endif

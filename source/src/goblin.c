@@ -9,6 +9,7 @@ var goblinSpawnTimer = 0;
 var goblinLastSpawnAngle = 0;
 
 SOUND* sndGobboRun = "Fussstapfen1.OGG";
+SOUND* sndGobboKill = "Wichtel_Tod.OGG";
 
 void goblin_spawn();
 void goblin_event();
@@ -77,6 +78,10 @@ void goblin()
 	my->alpha = 100;
 	set(my, TRANSLUCENT);
 	my->gobboDist = 0;
+	if (!is(my, is_collided) && is(my, is_dead))
+	{
+		snd_play(sndGobboKill, soundVolume,0);
+	}
 	while (my->alpha > 0)
 	{
 		wait (1);
@@ -89,7 +94,7 @@ void goblin()
 	{
 		ent_create("hat.mdl", vector(my->x, my->y, my->z+10.0), goblin_hat);
 	}
-
+	wait(1);
 	ptr_remove(me);
 }
 
@@ -104,8 +109,8 @@ void goblin_event()
 			{	
 				set (my, is_dead);
 				//shot by snowball
-				wait(1);
-				ent_remove(you);
+				//wait(1);
+				//ent_remove(you);
 			}
 		}
 	}

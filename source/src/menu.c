@@ -3,6 +3,8 @@
 
 void startMenu() {
 	
+	reset(panGameOver, SHOW);
+	isGameOver = 0;
 	on_esc = exitGame;
 	
 	if (panTitle == NULL) {

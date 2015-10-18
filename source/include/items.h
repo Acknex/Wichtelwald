@@ -5,5 +5,6 @@
 #define ITEM_HEIGHT 40
 
 void item_spawn_loop();
+void item_restart();
 
 #endif

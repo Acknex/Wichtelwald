@@ -15,6 +15,9 @@ void startGame()
 	dayOrNight = DAY;
 	dayTime = 28800;
 	
+	hut_restart();
+	item_restart();
+
 	set(mtl_model, PASS_SOLID);
 	random_seed(8);
 	

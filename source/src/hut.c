@@ -121,7 +121,7 @@ void hut_count()
 		}
 		else
 		{
-			showHutItems();	
+			hideHutItems();	
 		}
 		
 		wait(1);
@@ -205,7 +205,7 @@ action hut_light()
 		if (dayOrNight == NIGHT && !isGameOver)
 		{
 			my->red = fireColor.red + random(20) - 10;
-			my->lightrange = random(200) + 400;
+			my->lightrange = random(140) + 300;
 		}
 		else
 		{

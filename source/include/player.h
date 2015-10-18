@@ -1,7 +1,7 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-#define WALK_SPEED 10
+#define WALK_SPEED 20
 #define RUN_SPEED 10
 #define PLAYER_HEIGHT 3
 
