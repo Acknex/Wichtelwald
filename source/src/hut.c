@@ -64,6 +64,11 @@ void hut_event()
 			hutSnowballTodo += snowballCount;
 			snowballCount = 0;
 		}
+		
+		if(your->ENTITY_TYPE == GOBLIN)
+		{
+			hut_hit();
+		}
 	}
 }
 
@@ -143,7 +148,7 @@ void hut_hit()
 	
 	snd_play(sndHitHut, soundVolume, 0);
 
-	if (hutShake > 0)
+/*	if (hutShake > 0)
 	{
 		hutShake = 0;
 		return;
@@ -161,7 +166,8 @@ void hut_hit()
 		wait(-0.05);
 		hutShake += 0.2;
 	}
-	hutShake = 0;
+	hutShake = 0;*/
+	
 	hutWoodCount = maxv(hutWoodCount - your->ATTACK_POWER, 0);
 }
 

@@ -13,6 +13,7 @@ SOUND* sndGobboRun = "Fussstapfen1.OGG";
 void goblin_spawn();
 void goblin_event();
 void goblin();
+void goblin_hat();
 
 void goblin_loop()
 {
@@ -55,9 +56,11 @@ void goblin_spawn()
 void goblin()
 {
 	c_setminmax(me);
-	my->emask |= ENABLE_ENTITY | ENABLE_IMPACT;
+	my->trigger_range = 40;
+	my->emask |= ENABLE_TRIGGER | ENABLE_IMPACT;
 	my->event = goblin_event;
 	my->ENTITY_TYPE = GOBLIN;
+	my->ATTACK_POWER = 1;
 	ent_playloop(me, sndGobboRun, soundVolume * 10);
 	while (dayOrNight == NIGHT && !is(my, is_dead))
 	{
@@ -66,23 +69,32 @@ void goblin()
 		{
 			my->z = hit->z - my->min_z + 2;
 		}
-		c_move(me,vector(goblinSpeed * time_step,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE);
+		c_move(me,vector(goblinSpeed * time_step,0,0),nullvector, IGNORE_PASSABLE | IGNORE_PASSENTS | GLIDE | ACTIVATE_TRIGGER);
 		my->gobboDist += goblinSpeed * time_step;
 		ent_animate(me, "walk", (my->gobboDist % 100) * 1, ANM_CYCLE);
 	}
+	my->alpha = 100;
+	set(my, TRANSLUCENT);
+	while (my->alpha > 0)
+	{
+		wait (1);
+		my->alpha -= 5* time_step;
+	}
+
+	ent_create("hat.mdl", my->x, goblin_hat);
 
 	ptr_remove(me);
 }
 
 void goblin_event()
 {
-	if (event_type == EVENT_ENTITY)
+	if (event_type == EVENT_TRIGGER)
 	{
 		if (you != NULL)
 		{
 			if (your->ENTITY_TYPE == HUT)
 			{
-				ptr_remove(me);
+				set (my, is_dead);
 			}
 		}
 	}
@@ -93,10 +105,20 @@ void goblin_event()
 		{
 			if (your->ENTITY_TYPE == SNOWBALL)
 			{	
+				set (my, is_dead);
 				//shot by snowball
 			}
 		}
 	}
 }
 
+void goblin_hat()
+{
+	set(my, PASSABLE);
+	my->pan = random(360);
+	if (c_trace(&my->x, vector(my->x, my->y, my->z - 1000), IGNORE_ME | IGNORE_PASSABLE | IGNORE_PASSENTS) > 0)
+	{
+		my->z = hit->z - my->min_z;
+	}
+}
 #endif
