@@ -44,7 +44,7 @@ void startGame()
 		tree.pan = random(360);
 	}
 	
-	pssm_run(4);
+	// pssm_run(4);
 
 	var sunlightFactor = 0;
 	
@@ -79,7 +79,7 @@ void startGame()
 			mouse_mode = 1;
 			ent_remove(player);
 			ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
-			on_space = throwSnowball;
+			on_mouse_left = throwSnowball;
 			stopMusicGame();
 			playMusicGameNight();
 		}
@@ -96,7 +96,7 @@ void startGame()
 		{
 			dayOrNight = DAY;
 			snd_play(sndDayStart, soundVolume, 0);
-			on_space = NULL;
+			on_mouse_left = NULL;
 			ent_remove(player);
 			mouse_mode = 0;
 			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
@@ -128,6 +128,8 @@ void startGame()
 }
 
 void backToMenu() {	
+	reset(panGameOver, SHOW);
+	isGameOver = 0;
 	endIngameGUI();
 	level_load("maps//menuLevel.wmb");
 	startMenu();
@@ -135,6 +137,7 @@ void backToMenu() {
 
 void gameOver() {
 	isGameOver = 1;
+	on_mouse_left = NULL;
 	endIngameGUI();
 	ent_remove(player);
 	panGameOver.pos_x = screen_size.x / 2 - bmap_width(bmapGameOver) / 2;

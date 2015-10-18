@@ -1,7 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#define DAY_TIME_SPEED 20
+#define DAY_TIME_SPEED 50
 
 #define DAY 0
 #define NIGHT 1
