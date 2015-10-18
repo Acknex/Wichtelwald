@@ -122,7 +122,7 @@ void backToMenu() {
 	on_space = NULL;
 	on_mouse_left = NULL;	
 	endIngameGUI();
-	level_load("maps//menuLevel2.wmb");
+	level_load("menuLevel2.wmb");
 	startMenu();
 }
 
