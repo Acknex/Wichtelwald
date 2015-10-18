@@ -1,15 +1,15 @@
 #ifndef MUSIC_H_
 #define MUSIC_H_
 
-SOUND* sndMusicMenu = "music//Song1.OGG";
-SOUND* sndMusicGameDay = "music//Song2_Tag.OGG";
-SOUND* sndMusicGameNight = "music//Song3.OGG";
+SOUND* sndMusicMenu = "Song1.OGG";
+SOUND* sndMusicGameDay = "Song2_Tag.OGG";
+SOUND* sndMusicGameNight = "Song3.OGG";
 
-SOUND* sndThrow1 = "sounds//throw1.ogg";
-SOUND* sndThrow2 = "sounds//throw2.ogg";
+SOUND* sndThrow1 = "throw1.ogg";
+SOUND* sndThrow2 = "throw2.ogg";
 
-SOUND* sndDayStart = "sounds//Hahn.OGG";
-SOUND* sndNightStart = "sounds//Wolf.OGG";
+SOUND* sndDayStart = "Hahn.OGG";
+SOUND* sndNightStart = "Wolf.OGG";
 
 var menuMusicHandle = 0;
 var gameMusicHandle = 0;

@@ -6,12 +6,19 @@
 #include <default.c>
 #endif
 
+#define PRAGMA_LEVEL "maps\\mainLevel.wmp"
+#define PRAGMA_LEVEL "maps\\menuLevel.wmp"
+
 #define PRAGMA_PATH "src";
 #define PRAGMA_PATH "include";
 #define PRAGMA_PATH "models";
 #define PRAGMA_PATH "textures";
+#define PRAGMA_PATH "shadows";
+#define PRAGMA_PATH "fonts";
+#define PRAGMA_PATH "sounds";
+#define PRAGMA_PATH "music";
 
-#include "shadows/shadows.c"
+#include "shadows.c"
 #include "menu.h"
 #include "game.h"
 #include "camera.h"

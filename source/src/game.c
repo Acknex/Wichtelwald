@@ -42,7 +42,7 @@ void startGame()
 			continue;
 		}
 		
-		ENTITY *tree = ent_create("models//pine_3.mdl", tempVector, 0);
+		ENTITY *tree = ent_create("pine_3.mdl", tempVector, 0);
 		set(tree, PASSABLE|SHADOW);
 		vec_scale(tree.scale_x, random(0.5) + 0.5);
 		tree.pan = random(360);
@@ -164,7 +164,7 @@ void startDay()
 	on_mouse_left = NULL;
 	ent_remove(player);
 	mouse_mode = 0;
-	ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
+	ent_create("player.mdl", vector(-147, -44, 0), actPlayerMove);
 	stopMusicGame();
 	playMusicGameDay();
 	show_dayhint();
@@ -181,7 +181,7 @@ void startNight()
 	snd_play(sndNightStart, soundVolume, 0);
 	mouse_mode = 1;
 	ent_remove(player);
-	ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
+	ent_create("player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
 	on_space = throwSnowball;
 	on_mouse_left = throwSnowball;
 	stopMusicGame();

@@ -1,11 +1,11 @@
 #ifndef WEATHER_H
 #define WEATHER_H
 
-BMAP* bmapRainDrop = "graphics//rain.tga";
-BMAP* bmapDust = "graphics//dust.tga";
+BMAP* bmapRainDrop = "rain.tga";
+BMAP* bmapDust = "dust.tga";
 
-SOUND* sndRain = "sounds//rain.wav";
-SOUND* sndWind = "sounds//wind.wav";
+SOUND* sndRain = "rain.wav";
+SOUND* sndWind = "wind.wav";
 
 var vWeatherSoundHandle;
 
@@ -34,7 +34,7 @@ function pTornadoAlphaFade(PARTICLE* p);
 
 
 ENTITY* entClouds = {
-	type = "graphics//clouds.tga";
+	type = "clouds.tga";
 	flags2 = SKY | DOME;
 	u=1;
 	v=1;

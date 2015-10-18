@@ -10,7 +10,7 @@
 
 float animationFactor = 0;
 
-BMAP* bmapCrosshair = "graphics//crosshair.tga";
+BMAP* bmapCrosshair = "crosshair.tga";
 
 action actPlayerMove();
 action actPlayerShoot();
