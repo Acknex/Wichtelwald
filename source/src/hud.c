@@ -60,6 +60,11 @@ void startIngameGUI() {
 }
 
 void endIngameGUI() {
+	reset(panHutBg,SHOW);
+	reset(txtHutSnowballCount, SHOW);
+	reset(txtHutWoodCount, SHOW);
+	reset(panSmallWoodCount, SHOW);
+	reset(panSmallSnowballCount, SHOW);	
 	reset(panWoodCount, SHOW);
 	reset(panSnowballCount, SHOW);
 	reset(panClock, SHOW);

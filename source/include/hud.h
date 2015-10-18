@@ -21,7 +21,7 @@ BMAP* bmapClock = "graphics//clock.tga";
 
 PANEL* panClock = { bmap = bmapClock; layer = 13; }
 
-PANEL* panHutBg = { flags = LIGHT | TRANSLUCENT; red = 0; blue = 0; green = 0; size_x = 140; size_y = 130; alpha = 60; layer = 12;}
+PANEL* panHutBg = { flags = LIGHT | TRANSLUCENT; red = 0; blue = 0; green = 0; size_x = 150; size_y = 130; alpha = 60; layer = 12;}
 BMAP* bmapHut = "graphics//hut.tga";
 PANEL* panHut = { bmap = bmapHut; layer = 13; flags = TRANSLUCENT; }
 TEXT* txtHutWoodCount = NULL;
