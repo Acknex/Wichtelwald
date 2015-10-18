@@ -77,6 +77,8 @@ void startGame()
 			ent_remove(player);
 			mouse_mode = 0;
 			ent_create("models//player.mdl", vector(-147, -44, 0), actPlayerMove);
+			stopMusicGame();
+			playMusicGameDay();
 		}
 		
 		// Day
@@ -94,11 +96,14 @@ void startGame()
 			ent_remove(player);
 			ent_create("models//player.mdl", vector(entHut.x, entHut.y, entHut.z + 200), actPlayerShoot);
 			on_space = throwSnowball;
+			stopMusicGame();
+			playMusicGameNight();
 		}
 		
 		// Night
 		if(sunlightFactor <= 0.0)
 		{
+
 			sun_light = -sunlightFactor*30;
 		}
 		
@@ -108,6 +113,12 @@ void startGame()
 		d3d_fogcolor1.red = sun_light*255.0/100.0;
 		d3d_fogcolor1.green = sun_light*255.0/100.0;
 		d3d_fogcolor1.blue = sun_light*255.0/100.0;
+		
+		if (key_l) {
+			while(key_l) wait(1);
+			shake();
+		}
+		
 		
 		if (key_esc) {
 			while(key_esc) wait(1);
@@ -119,10 +130,35 @@ void startGame()
 	backToMenu();
 }
 
-void backToMenu() {
+void backToMenu() {	
 	endIngameGUI();
 	level_load("maps//menuLevel.wmb");
 	startMenu();
+}
+
+void gameOver() {
+	isGameOver = 1;
+	endIngameGUI();
+	ent_remove(player);
+	panGameOver.pos_x = screen_size.x / 2 - bmap_width(bmapGameOver) / 2;
+	panGameOver.pos_y = screen_size.y / 2 - bmap_height(bmapGameOver) / 2;
+	set(panGameOver, SHOW);
+	
+	vec_set(vecCamTmp, entHut.x);
+	int counter = 1000;
+	while(counter > 0) {
+		cam_angle +=0.005 * time_step;
+		camera.x = cos(cam_angle) * 768;
+		camera.y = sin(cam_angle) * 768;
+		vec_diff(vecCamTmp.x, nullvector, camera.x);
+		vec_to_angle(camera.pan, vecCamTmp);
+		counter--;
+		wait(1);
+	}
+	
+	reset(panGameOver, SHOW);
+	isGameOver = 0;
+	backToMenu();
 }
 
 #endif

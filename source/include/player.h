@@ -18,4 +18,7 @@ void animatePlayer(VECTOR* _distAhead);
 action actBall();
 void throwSnowball();
 
+int shakeTime = 0;
+void shake();
+
 #endif

@@ -65,6 +65,7 @@ void actPlayerShoot() {
 
 void actBall() {
 	wait(-5);
+	my->ENTITY_TYPE = SHOT;
 	pXent_settype(me, 0, 0);
 	while(my.scale_x > 0) {
 		my.scale_x -=0.1;
@@ -101,6 +102,17 @@ void throwSnowball() {
 		
 		hutSnowballCount--;
 	}
+}
+
+void shake() {
+	proc_kill(shake);
+	shakeTime +=20;
+	while(shakeTime > 0) {
+		camera.roll = random(10);
+		shakeTime--;
+		wait(1);
+	}
+	camera.roll = 0;
 }
 
 #endif
