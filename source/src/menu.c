@@ -14,20 +14,20 @@ void startMenu() {
 		panMainMenu = pan_create("", 10);
 		panMainMenu.bmap = bmapMainMenu;
 		panMainMenu.pos_x = 10;
-		panMainMenu.pos_y = 150;
+		panMainMenu.pos_y = screen_size.y / 2 - bmap_height(bmapMainMenu) / 2;
 		panMainMenu.alpha = 60;
 		
 		pan_setbutton(panMainMenu, 0, 0, 10, 10, bmapNewGameButtonOn, bmapNewGameButtonOff, bmapNewGameButtonOn, bmapNewGameButtonOff, startGame, NULL, NULL);
-		pan_setbutton(panMainMenu, 0, 0, 10, 50, bmapOptionsButtonOn, bmapOptionsButtonOff, bmapOptionsButtonOn, bmapOptionsButtonOff, startGame, NULL, NULL);
+		pan_setbutton(panMainMenu, 0, 0, 10, 50, bmapOptionsButtonOn, bmapOptionsButtonOff, bmapOptionsButtonOn, bmapOptionsButtonOff, showOptions, NULL, NULL);
 		pan_setbutton(panMainMenu, 0, 0, 10, 90, bmapCreditsButtonOn, bmapCreditsButtonOff, bmapCreditsButtonOn, bmapCreditsButtonOff, startGame, NULL, NULL);
-		pan_setbutton(panMainMenu, 0, 0, 10, 130, bmapEndGameButtonOn, bmapEndGameButtonOff, bmapEndGameButtonOn, bmapEndGameButtonOff, startGame, NULL, NULL);
+		pan_setbutton(panMainMenu, 0, 0, 10, 130, bmapEndGameButtonOn, bmapEndGameButtonOff, bmapEndGameButtonOn, bmapEndGameButtonOff, exitGame, NULL, NULL);
 		
 	}
 	
-	vec_set(entGreenDot.x, vector(200, 60, 80));
-	vec_set(entRedDot.x, vector(200, 20, 55));
-	vec_set(entYellowDot.x, vector(200, -10, 80));
-	vec_set(entBlueDot.x, vector(200, -50, 60));
+	vec_set(entGreenDot.x, vector(200, 35, 55));
+	vec_set(entRedDot.x, vector(200, 10, 55));
+	vec_set(entYellowDot.x, vector(200, -20, 60));
+	vec_set(entBlueDot.x, vector(200, -35, 50));
 	
 	entGreenDot.flags2 |=SHOW;
 	entRedDot.flags2 |=SHOW;
@@ -128,6 +128,50 @@ void endMenu() {
 	entBlueDot.flags2 &=~SHOW;
 	
 	mouse_mode = 0;
+}
+
+void showOptions() {
+	if (panMainMenu != NULL) {
+		reset(panMainMenu, SHOW);
+	}
+	
+	if (panOptions == NULL) {
+		panOptions = pan_create("", 12);
+		panOptions.bmap = bmapOptionsMenu;
+		panOptions.pos_x = screen_size.x / 2 - bmap_width(bmapOptionsMenu) / 2;
+		panOptions.pos_y = 150;
+		panOptions.alpha = 60;
+		pan_setslider(panOptions, 0, 150, 25, bmapSlider, bmapKnob, 0, 100, musicVolume);
+		pan_setslider(panOptions, 0, 150, 60, bmapSlider, bmapKnob, 0, 100, soundVolume);
+		
+		pan_setbutton(panOptions, 0, 0, 320, 200, bmapOkButtonOn, bmapOkButtonOff, bmapOkButtonOn, bmapOkButtonOff, closeOptions, NULL, NULL);
+	}
+	
+	txtSoundOption.font = fontBoogalooSmall;
+	txtMusicOption.font = fontBoogalooSmall;
+	
+	txtSoundOption.pos_x = panOptions.pos_x + 10;
+	txtSoundOption.pos_y = panOptions.pos_y + 44;
+	txtMusicOption.pos_x = panOptions.pos_x + 10;
+	txtMusicOption.pos_y = panOptions.pos_y + 10;
+	
+	str_cpy((txtSoundOption.pstring)[0], "Sound volume:");
+	str_cpy((txtMusicOption.pstring)[0], "Music volume:");
+	
+	set(panOptions, SHOW | TRANSLUCENT);
+	set(txtSoundOption, SHOW);
+	set(txtMusicOption, SHOW);
+}
+
+void closeOptions() {
+	
+	snd_tune(menuMusicHandle, musicVolume, 0, 0);
+	if (panOptions != NULL) {
+		reset(panOptions, SHOW);
+		reset(txtSoundOption, SHOW);
+		reset(txtMusicOption, SHOW);
+		set(panMainMenu, SHOW);
+	}
 }
 
 

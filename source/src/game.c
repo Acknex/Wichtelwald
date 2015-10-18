@@ -68,7 +68,7 @@ void startGame()
 		// Night start
 		if(dayTime == 72000)
 		{
-			snd_play(sndNightStart, 100, 0);
+			snd_play(sndNightStart, soundVolume, 0);
 		}
 		
 		// Night
@@ -80,7 +80,7 @@ void startGame()
 		// Day start
 		if (dayTime == 28800)
 		{
-			snd_play(sndDayStart, 100, 0);
+			snd_play(sndDayStart, soundVolume, 0);
 		}
 		
 		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;
