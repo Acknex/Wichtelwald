@@ -24,6 +24,7 @@
 #include "items.h"
 #include "hud.h"
 #include "hut.h"
+#include "goblin.h"
 
 #include "menu.c"
 #include "game.c"
@@ -37,6 +38,7 @@
 #include "items.c"
 #include "hud.c"
 #include "hut.c"
+#include "goblin.c"
 
 void main() {
 	sysInit();
