@@ -1,0 +1,11 @@
+Spielname:	Wichtelwald
+Tischsegment:	0
+Mitwirkende:	Jonas Freiknecht, Robert Jäger, Nils Daumann, Ruben Freiknecht
+Teamname:	Ackcon
+Steuerung: 	Tags:	WASD - Laufen
+		Nachts:	Maus - Zielen
+			Linksklick - Schneeball werfen
+Story:		Du musstest die faulen Wichtel aus deiner Winterresidenz werfen; sie haben einfach zu viel Unsinn im Kopf...
+		Aber in dieser kalten Jahreszeit bleiben die kleinen Ungetüme ungern draussen. Sammle tagsüber überlebens wichtiges Brennholz und mache ein paar Schneebälle.
+		Steige nachts aufs Dach und verteidige deine Hütte, sonst wird auch dir bald sehr sehr kalt...
+		
