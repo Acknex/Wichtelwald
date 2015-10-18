@@ -4,6 +4,7 @@
 #include <windows.h>
 
 void sysInit() {
+	video_mode = 12;
 	max_particles = 25000;
 	physX_open();
 	AddFontResource("fonts//Boogaloo-Regular.otf");

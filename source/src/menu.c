@@ -14,7 +14,7 @@ void startMenu() {
 		panMainMenu = pan_create("", 10);
 		panMainMenu.bmap = bmapMainMenu;
 		panMainMenu.pos_x = 10;
-		panMainMenu.pos_y = 150;
+		panMainMenu.pos_y = screen_size.y / 2 - bmap_height(bmapMainMenu) / 2;
 		panMainMenu.alpha = 60;
 		
 		pan_setbutton(panMainMenu, 0, 0, 10, 10, bmapNewGameButtonOn, bmapNewGameButtonOff, bmapNewGameButtonOn, bmapNewGameButtonOff, startGame, NULL, NULL);
@@ -24,10 +24,10 @@ void startMenu() {
 		
 	}
 	
-	vec_set(entGreenDot.x, vector(200, 60, 80));
-	vec_set(entRedDot.x, vector(200, 20, 55));
-	vec_set(entYellowDot.x, vector(200, -10, 80));
-	vec_set(entBlueDot.x, vector(200, -50, 60));
+	vec_set(entGreenDot.x, vector(200, 35, 55));
+	vec_set(entRedDot.x, vector(200, 10, 55));
+	vec_set(entYellowDot.x, vector(200, -20, 60));
+	vec_set(entBlueDot.x, vector(200, -35, 50));
 	
 	entGreenDot.flags2 |=SHOW;
 	entRedDot.flags2 |=SHOW;

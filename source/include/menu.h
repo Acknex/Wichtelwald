@@ -36,7 +36,7 @@ TEXT* txtSoundOption = { strings = 1; layer = 13; }
 TEXT* txtMusicOption = { strings = 1; layer = 13; }
 
 ENTITY* entGreenDot = { type = "graphics//greenDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
-ENTITY* entRedDot = { type = "graphics//redDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 9; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
+ENTITY* entRedDot = { type = "graphics//redDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
 ENTITY* entBlueDot = { type = "graphics//blueDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
 ENTITY* entYellowDot = { type = "graphics//yellowDot.tga"; flags2 = SHOW; flags = BRIGHT; layer = 12; scale_x = 0.5; scale_y = 0.5; scale_z = 0.5; }
 
