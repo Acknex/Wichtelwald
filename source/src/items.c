@@ -12,7 +12,6 @@ int maxWoodCount = 3;
 int snowballCount = 0;
 int maxSnowballCount = 20;
 
-
 void item_loop();
 void item_fade();
 void item_wood_evt();
