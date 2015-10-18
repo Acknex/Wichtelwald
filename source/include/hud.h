@@ -7,6 +7,7 @@ void updateGui();
 
 void showHutItems();
 void hideHutItems();
+var isHutItemsVisible();
 
 BMAP* bmapWoodCount = "graphics//wood.tga";
 PANEL* panWoodCount = { bmap = bmapWoodCount; layer = 12; }
