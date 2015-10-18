@@ -88,7 +88,7 @@ void goblin()
 
 void goblin_event()
 {
-	if (event_type == EVENT_TRIGGER)
+	/*if (event_type == EVENT_TRIGGER)
 	{
 		if (you != NULL)
 		{
@@ -97,7 +97,7 @@ void goblin_event()
 				set (my, is_dead);
 			}
 		}
-	}
+	}*/
 
 	if (event_type == EVENT_IMPACT)
 	{

@@ -7,8 +7,8 @@ var hutShake = 0;
 
 BMAP* bmpSmoke = "rauch2.tga";
 SOUND* sndTransferHut = "present_counter.OGG";
-SOUND* sndLoseHut = "present_counter.OGG";
-SOUND* sndHitHut = "present_counter.OGG";
+SOUND* sndLoseHut = "present_negativcounter.OGG";
+SOUND* sndHitHut = "Wichtel_Victory.OGG";
 
 void fade_p(PARTICLE* p);
 void smoke_p(PARTICLE* p);
@@ -41,19 +41,6 @@ void smoke_p(PARTICLE* p)
 
 void hut_event()
 {
-	if (event_type == EVENT_IMPACT && you != NULL)
-	{
-		if (your->ENTITY_TYPE == GOBLIN)
-		{
-			hut_hit();
-			if (hutWoodCount <= 0)
-			{
-				set(my, is_empty);
-			}	
-		}
-		
-	}
-	
 	if (event_type == EVENT_TRIGGER && you != NULL)
 	{
 		if (you == player)
@@ -67,7 +54,12 @@ void hut_event()
 		
 		if(your->ENTITY_TYPE == GOBLIN)
 		{
+			set(your, is_dead);
 			hut_hit();
+			if (hutWoodCount <= 0)
+			{
+				set(my, is_empty);
+			}	
 		}
 	}
 }
@@ -167,7 +159,7 @@ void hut_hit()
 		hutShake += 0.2;
 	}
 	hutShake = 0;*/
-	
+	//error("huthit");
 	hutWoodCount = maxv(hutWoodCount - your->ATTACK_POWER, 0);
 }
 
@@ -207,7 +199,7 @@ action hut()
 	}
 	
 	//game over
-	error("Nun.. jetzt hab ich wohl verkackt");
+	//error("Nun.. jetzt hab ich wohl verkackt");
 }
 
 action hut_light()
