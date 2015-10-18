@@ -14,6 +14,9 @@
 #define PRAGMA_PATH "models";
 #define PRAGMA_PATH "textures";
 #define PRAGMA_PATH "shadows";
+#define PRAGMA_PATH "fonts";
+#define PRAGMA_PATH "sounds";
+#define PRAGMA_PATH "music";
 
 #include "shadows.c"
 #include "menu.h"

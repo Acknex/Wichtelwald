@@ -188,7 +188,7 @@ void showCredits() {
 		panCredits.bmap = bmapOptionsMenu;
 		
 		pan_setdigits(panCredits, 0, 10, 10, "Credits:", fontBoogaloo, 1, digitDummy);
-		pan_setdigits(panCredits, 0, 10, 65, "Robert Jäger: Coding and Modelling\nRuben Freiknecht: Music and Sounds\nNils Daumann: Coding and Graphics\nJonas Freiknecht: Coding and UI", fontBoogalooSmall, 1, digitDummy);
+		pan_setdigits(panCredits, 0, 10, 65, "Robert Jäger: Coding / Modeling\nRuben Freiknecht: Music / Sounds\nNils Daumann: Coding / Graphics\nJonas Freiknecht: Coding / UI", fontBoogalooSmall, 1, digitDummy);
 		pan_setbutton(panCredits, 0, 0, 320, 200, bmapOkButtonOn, bmapOkButtonOff, bmapOkButtonOn, bmapOkButtonOff, closeCredits, NULL, NULL);
 	}
 	

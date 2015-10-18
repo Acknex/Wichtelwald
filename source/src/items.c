@@ -196,9 +196,9 @@ void item_spawn()
 	
 	ENTITY *item;
 	if(random(1.0) > 0.95)
-		item = ent_create("models//woodthing.mdl", tempVector, item_wood);
+		item = ent_create("woodthing.mdl", tempVector, item_wood);
 	else
-		item = ent_create("models//snowball.mdl", tempVector, item_snowball);
+		item = ent_create("snowball.mdl", tempVector, item_snowball);
 	item.pan = random(360);
 }
 
