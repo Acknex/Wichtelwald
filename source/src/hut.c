@@ -54,12 +54,8 @@ void hut_event()
 		
 		if(your->ENTITY_TYPE == GOBLIN)
 		{
-			set(your, is_dead);
+			set(your, is_dead | is_collided);
 			hut_hit();
-			if (hutWoodCount <= 0)
-			{
-				set(my, is_empty);
-			}	
 		}
 	}
 }
@@ -140,27 +136,11 @@ void hut_hit()
 	
 	snd_play(sndHitHut, soundVolume, 0);
 
-/*	if (hutShake > 0)
-	{
-		hutShake = 0;
-		return;
-	}	
-
-	vec_set(&vecPos, &my->x);
-	while(hutShake < HIT_TIME)
-	{
-		vec_randomize(&vecTemp, 100);
-		vec_normalize(&vecTemp, 20);
-		vec_add(&my->x, &vecTemp);
-		my->z = vecPos.z;
-		wait(-0.15);
-		vec_set(&my->x, &vecPos);
-		wait(-0.05);
-		hutShake += 0.2;
-	}
-	hutShake = 0;*/
-	//error("huthit");
 	hutWoodCount = maxv(hutWoodCount - your->ATTACK_POWER, 0);
+	if (hutWoodCount <= 0)
+	{
+		set(my, is_empty);
+	}	
 }
 
 action smoke()

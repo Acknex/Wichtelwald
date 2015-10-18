@@ -62,7 +62,7 @@ void goblin()
 	my->ENTITY_TYPE = GOBLIN;
 	my->ATTACK_POWER = 1;
 	ent_playloop(me, sndGobboRun, soundVolume * 10);
-	while (dayOrNight == NIGHT && !is(my, is_dead))
+	while (dayOrNight == NIGHT && (!is(my, is_dead)))
 	{
 		wait (1);
 		if (c_trace(&my->x, vector(my->x, my->y, my->z - 1000), IGNORE_ME | IGNORE_PASSABLE | IGNORE_PASSENTS) > 0)
@@ -75,29 +75,25 @@ void goblin()
 	}
 	my->alpha = 100;
 	set(my, TRANSLUCENT);
+	my->gobboDist = 0;
 	while (my->alpha > 0)
 	{
 		wait (1);
 		my->alpha -= 5* time_step;
+		my->gobboDist += 2 * time_step;
+		ent_animate(me, "victory", (my->gobboDist % 20) * 5, 0);
 	}
 
-	ent_create("hat.mdl", my->x, goblin_hat);
+	if (!is(my, is_collided))
+	{
+		ent_create("hat.mdl", my->x, goblin_hat);
+	}
 
 	ptr_remove(me);
 }
 
 void goblin_event()
 {
-	/*if (event_type == EVENT_TRIGGER)
-	{
-		if (you != NULL)
-		{
-			if (your->ENTITY_TYPE == HUT)
-			{
-				set (my, is_dead);
-			}
-		}
-	}*/
 
 	if (event_type == EVENT_IMPACT)
 	{
