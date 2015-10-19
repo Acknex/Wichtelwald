@@ -155,7 +155,7 @@ action smoke()
 {
 	set(me, PASSABLE | INVISIBLE);
 	var partout = 0;
-	while (1)
+	while (me)
 	{
 		partout += time_step;
 		while(partout > 1)
@@ -200,7 +200,7 @@ action hut_light()
 	vec_set(&my->blue, &fireColor);
 	set(my, LIGHT);
 	
-	while(1)
+	while(me)
 	{
 		if (dayOrNight == NIGHT && !isGameOver)
 		{
@@ -211,7 +211,8 @@ action hut_light()
 		{
 			my->lightrange = 0;
 		}
-		wait (-0.1 - random(0.2));
+		wait (-(0.1 + random(0.2)));
+		wait(1);
 	}
 }
 

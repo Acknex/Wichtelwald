@@ -3,6 +3,7 @@
 
 void startMenu() {
 	
+	hide_hints();
 	sun_angle.pan = 255;
 	sun_angle.tilt = 60;
 	sun_angle.roll = 50000;

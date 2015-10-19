@@ -4,6 +4,7 @@
 void reset_hints();
 void show_dayhint();
 void show_nighthint();
+void hide_hints();
 
 
 #endif

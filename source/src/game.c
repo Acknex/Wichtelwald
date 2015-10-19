@@ -7,6 +7,8 @@ void startGame()
 	endMenu();
 	wait(1);
 	level_load("mainLevel.wmb");
+//	level_load("menuLevel2.wmb");
+//wait(1); // wait until last_error becomes valid
 	on_esc = NULL;
 	gameCameraInit();
 	startIngameGUI();
@@ -54,61 +56,65 @@ void startGame()
 	
 	random_seed(0);
 	pssm_run(4);
+wait(1); // fucking wait(1) seems to fix something which breaks everything
 
 	var sunlightFactor = 0;
 	var dayCounter = 0;
-	while(isGameOver == 0)
+	while(isGameOver < 2)
 	{
-		updateGui();
-		goblin_loop();
-		item_spawn_loop();
-		
-		dayTime += DAY_TIME_SPEED * time_step * 1;
-		if(dayTime >= 86400)
+		if (isGameOver == 0)
 		{
-			dayTime -= 86400;
-			dayCounter += 1;
+			updateGui();
+			goblin_loop();
+			item_spawn_loop();
 			
-			goblinSpawnDelay = maxv(16.0*3.0-dayCounter*2, 1);
+			dayTime += DAY_TIME_SPEED * time_step * 1;
+			if(dayTime >= 86400)
+			{
+				dayTime -= 86400;
+				dayCounter += 1;
+				
+				goblinSpawnDelay = maxv(16.0*3.0-dayCounter*2, 1);
+			}
+			
+			hours = integer(dayTime/60.0/60.0);
+			minutes = (integer(dayTime)-hours*60.0*60.0)/60.0;
+			
+			sunlightFactor = sinv((dayTime-28800.0)/(60.0*60.0*12.0)*180.0);
+			
+			// Day start
+			if(dayTime >= 28800 && dayOrNight == NIGHT && dayTime < 72000)
+			{
+				dayOrNight = 3;
+				fadeWithBlack(startDay);
+			}
+			
+			// Day
+			if(sunlightFactor > 0.0)
+			{
+				sun_light = sunlightFactor*60;
+			}
+			
+			// Night start
+			if(dayTime >= 72000 && dayOrNight == DAY)
+			{
+				dayOrNight = 3;
+				fadeWithBlack(startNight);
+			}
+			
+			// Night
+			if(sunlightFactor <= 0.0)
+			{
+				sun_light = -sunlightFactor*30;
+			}
+			
+			sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;
+			sun_angle.tilt = abs(ang(asinv(sunlightFactor)))*70.0/180.0+10.0;
+			
+			d3d_fogcolor1.red = sun_light*255.0/100.0;
+			d3d_fogcolor1.green = sun_light*255.0/100.0;
+			d3d_fogcolor1.blue = sun_light*255.0/100.0;
 		}
-		
-		hours = integer(dayTime/60.0/60.0);
-		minutes = (integer(dayTime)-hours*60.0*60.0)/60.0;
-		
-		sunlightFactor = sinv((dayTime-28800.0)/(60.0*60.0*12.0)*180.0);
-		
-		// Day start
-		if(dayTime >= 28800 && dayOrNight == NIGHT && dayTime < 72000)
-		{
-			dayOrNight = 3;
-			fadeWithBlack(startDay);
-		}
-		
-		// Day
-		if(sunlightFactor > 0.0)
-		{
-			sun_light = sunlightFactor*60;
-		}
-		
-		// Night start
-		if(dayTime >= 72000 && dayOrNight == DAY)
-		{
-			dayOrNight = 3;
-			fadeWithBlack(startNight);
-		}
-		
-		// Night
-		if(sunlightFactor <= 0.0)
-		{
-			sun_light = -sunlightFactor*30;
-		}
-		
-		sun_angle.pan = (dayTime-28800.0)/(60.0*60.0*12.0)*180.0;
-		sun_angle.tilt = abs(ang(asinv(sunlightFactor)))*70.0/180.0+10.0;
-		
-		d3d_fogcolor1.red = sun_light*255.0/100.0;
-		d3d_fogcolor1.green = sun_light*255.0/100.0;
-		d3d_fogcolor1.blue = sun_light*255.0/100.0;
 		
 		/*if (key_l) {
 			while(key_l) wait(1);
@@ -122,7 +128,7 @@ void startGame()
 		}
 		wait(1);
 	}
-	
+	isGameOver = 0;	
 	backToMenu();
 }
 
@@ -160,8 +166,8 @@ void gameOver() {
 	}
 	
 	reset(panGameOver, SHOW);
-	isGameOver = 0;
-	backToMenu();
+	isGameOver = 2;
+	//backToMenu();
 }
 
 void startDay()

@@ -1,6 +1,6 @@
 #include <acknex.h>
 
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
 #include <default.c>
 #endif

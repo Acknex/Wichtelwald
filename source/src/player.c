@@ -147,7 +147,7 @@ void throwSnowball() {
 		vec_add(vecSpawnPoint, camera.x);
 		
 		
-		ENTITY* entBall = ent_create ("models//snowball.mdl", vecSpawnPoint, actBall);
+		ENTITY* entBall = ent_create ("snowball.mdl", vecSpawnPoint, actBall);
 		
 		//pXent_settype (entBall, PH_RIGID, PH_SPHERE);
 		//pXent_addforcelocal (entBall, vBallForce, entBall.x);
