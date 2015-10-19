@@ -16,7 +16,7 @@ var itemSpawnDelay = 10;
 var itemSpawnTimer = 0;
 
 var itemCounter = 0;
-var itemMax = 300;
+var itemMax = 150;
 
 void item_loop();
 void item_fade();
@@ -61,9 +61,14 @@ void item_loop()
 		my->z = hit->z + ITEM_HEIGHT;
 	}
 	
+	while(player == NULL)
+	{
+		wait(1);
+	}
+	
 	while(!is(me, is_collected))
 	{
-		if (dayOrNight == DAY)
+		if (dayOrNight == DAY && vec_dist(&player->x, &my->x) < 1000)
 		{
 			vParticles += time_step;
 			while (vParticles > 1)
@@ -96,8 +101,9 @@ void item_fade()
 	vec_sub(&vecDist, &player->x);
 	while (my->scale_x > 0)
 	{
+		wait(1);
 		//scale down item
-		my->scale_x = maxv(my->scale_x - 0.1 * time_step * fadeScale, 0);
+		my->scale_x -= 0.1 * time_step * fadeScale;
 		my->scale_y = my->scale_x;
 		my->scale_z = my->scale_x;
 		my->pan += (total_ticks - vTicks) * 10 * time_step;
@@ -106,7 +112,6 @@ void item_fade()
 		vec_set(&my->x, &vecDist);
 		vec_scale(&my->x, my->scale_x / fadeScale);
 		vec_add(&my->x, &player->x);
-		wait(1);
 	}
 	itemCounter--;
 	ptr_remove(me);

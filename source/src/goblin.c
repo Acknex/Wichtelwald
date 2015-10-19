@@ -95,7 +95,8 @@ void goblin()
 			ent_animate(me, "victory", (my->gobboDist % 20) * 5, ANM_CYCLE);
 		}
 	}
-
+	my->alpha = 0;
+	
 	if (!is(my, is_collided) && is(my, is_dead))
 	{
 		ent_create("hat.mdl", vector(my->x, my->y, my->z+10.0), goblin_hat);
@@ -130,11 +131,12 @@ void goblin_hat()
 	{
 		my->z = hit->z - my->min_z;
 	}
+	my->emask &= ~DYNAMIC;
 }
 
 void goblin_stand() {
 	while(me) {
-		my.ANIMATION_PERCENTAGE += 0.8;
+		my.ANIMATION_PERCENTAGE += 2.8 * time_step;
 		ent_animate(me, "talk ", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
 		wait(1);
 	}
@@ -142,7 +144,7 @@ void goblin_stand() {
 
 void goblin_stand2() {
 	while(me) {
-		my.ANIMATION_PERCENTAGE += 0.8;
+		my.ANIMATION_PERCENTAGE += 2.8 * time_step;
 		ent_animate(me, "victory ", my.ANIMATION_PERCENTAGE, ANM_CYCLE);
 		wait(1);
 	}

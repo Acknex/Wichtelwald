@@ -5,6 +5,7 @@ void startGame()
 {
 	reset_hints();
 	endMenu();
+	wait(1);
 	level_load("mainLevel.wmb");
 	on_esc = NULL;
 	gameCameraInit();
@@ -46,6 +47,8 @@ void startGame()
 		set(tree, PASSABLE|SHADOW);
 		vec_scale(tree.scale_x, random(0.5) + 0.5);
 		tree.pan = random(360);
+		tree->emask &= ~DYNAMIC;
+		
 	}
 	
 	random_seed(0);
@@ -53,7 +56,7 @@ void startGame()
 
 	var sunlightFactor = 0;
 	var dayCounter = 0;
-	while(1)
+	while(isGameOver == 0)
 	{
 		updateGui();
 		goblin_loop();
@@ -106,10 +109,10 @@ void startGame()
 		d3d_fogcolor1.green = sun_light*255.0/100.0;
 		d3d_fogcolor1.blue = sun_light*255.0/100.0;
 		
-		if (key_l) {
+		/*if (key_l) {
 			while(key_l) wait(1);
 			shake();
-		}
+		}*/
 		
 		
 		if (key_esc) {
@@ -126,6 +129,9 @@ void backToMenu() {
 	on_space = NULL;
 	on_mouse_left = NULL;	
 	endIngameGUI();
+	stopSnow();
+	pssm_run(0);
+	wait(1);
 	level_load("menuLevel2.wmb");
 	startMenu();
 }
