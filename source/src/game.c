@@ -63,7 +63,7 @@ void startGame()
 		goblin_loop();
 		item_spawn_loop();
 		
-		dayTime += DAY_TIME_SPEED * time_step;
+		dayTime += DAY_TIME_SPEED * time_step * 1;
 		if(dayTime >= 86400)
 		{
 			dayTime -= 86400;

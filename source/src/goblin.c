@@ -7,7 +7,8 @@ var goblinSpawnDist = 1300;
 var goblinSpawnTimer = 0;
 var goblinLastSpawnAngle = 0;
 
-SOUND* sndGobboRun = "Fussstapfen1.OGG";
+//SOUND* sndGobboRun = "Fussstapfen1.OGG";
+SOUND* sndGobboRun = "Fussstapfen2.OGG";
 SOUND* sndGobboKill = "Wichtel_Tod.OGG";
 
 void goblin_spawn();
@@ -55,6 +56,7 @@ void goblin_spawn()
 
 void goblin()
 {
+	wait(1);
 	c_setminmax(me);
 	my->trigger_range = 40;
 	set(my, SHADOW);
@@ -62,6 +64,7 @@ void goblin()
 	my->event = goblin_event;
 	my->ENTITY_TYPE = GOBLIN;
 	my->ATTACK_POWER = 1;
+	wait(1);
 	ent_playloop(me, sndGobboRun, soundVolume * 10);
 	while (dayOrNight == NIGHT && isGameOver == 0 &&(!is(my, is_dead)))
 	{
