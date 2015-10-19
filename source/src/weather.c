@@ -35,7 +35,7 @@ void startSnow() {
 
 	snd_stop(vWeatherSoundHandle);
 	vWeatherSoundHandle = snd_loop(sndWind, 20, 0);
-
+	
 	VECTOR vecTemp;
 	nWeatherType = 0;
 	while(nWeatherType == 0) {
@@ -43,6 +43,7 @@ void startSnow() {
 		vecTemp.x = -1000 + random(2000);
 		vecTemp.y = -1000 + random(2000);
 		vecTemp.z = camera.z + 100;
+		if (player != NULL) vec_add(&vecTemp, &player->x);
 		effect(pSnow,maxv(1,random(10)),vecTemp,vector(0,0,-4));
 		wait(1);
 	}

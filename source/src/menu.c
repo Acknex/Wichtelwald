@@ -3,6 +3,11 @@
 
 void startMenu() {
 	
+	sun_angle.pan = 255;
+	sun_angle.tilt = 60;
+	sun_angle.roll = 50000;
+	sun_light = 100;
+	vec_set(d3d_fogcolor1.blue, vector(255,255,255));
 	reset(panGameOver, SHOW);
 	isGameOver = 0;
 	on_esc = exitGame;
@@ -108,7 +113,7 @@ void startMenu() {
 			}
 		}
 		
-		wait(45);
+		wait(-3);
 	}
 	
 }

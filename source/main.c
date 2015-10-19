@@ -7,6 +7,7 @@
 
 #define PRAGMA_LEVEL "maps\\mainLevel.wmp"
 #define PRAGMA_LEVEL "maps\\menuLevel2.wmp"
+#define PRAGMA_BIND "shadows\\default.fx"
 
 #define PRAGMA_PATH "src";
 #define PRAGMA_PATH "include";

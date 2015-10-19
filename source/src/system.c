@@ -6,7 +6,8 @@
 void sysInit() {
 	video_mode = 12;
 	video_screen = 1;
-	//fps_max = 30;
+	fps_max = 60;
+	//time_smooth = 0.9;
 	max_particles = 25000;
 	AddFontResource("fonts//Boogaloo-Regular.otf");
 

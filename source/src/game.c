@@ -43,7 +43,8 @@ void startGame()
 			continue;
 		}
 		
-		ENTITY *tree = ent_create("pine_3.mdl", tempVector, 0);
+//		ENTITY *tree = ent_create("pine_3.mdl", tempVector, 0);
+		ENTITY *tree = ent_create("pine_3_reduced.mdl", tempVector, 0);
 		set(tree, PASSABLE|SHADOW);
 		vec_scale(tree.scale_x, random(0.5) + 0.5);
 		tree.pan = random(360);
@@ -130,6 +131,8 @@ void backToMenu() {
 	on_mouse_left = NULL;	
 	endIngameGUI();
 	stopSnow();
+	wait(1);
+	//error("loading menu");
 	pssm_run(0);
 	wait(1);
 	level_load("menuLevel2.wmb");
