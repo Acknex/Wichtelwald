@@ -56,7 +56,7 @@ void startGame()
 	
 	random_seed(0);
 	pssm_run(4);
-wait(1); // fucking wait(1) seems to fix something which breaks everything
+//wait(1); // fucking wait(1) seems to fix something which breaks everything
 
 	var sunlightFactor = 0;
 	var dayCounter = 0;
